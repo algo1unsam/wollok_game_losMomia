@@ -1,0 +1,50 @@
+import faraon.*
+import momia.*
+import objetos.*
+import wollok.game.*
+
+program momiaGame {
+	//configuraciones de pantalla
+	game.title("LA MOMIA POLIMORFICA")
+	game.height(10) //10 //15
+	game.width(19) //15 //25
+	game.boardGround("PIRAMIDE.jpg")
+	
+	//momia
+	game.addVisual(momia) 
+	
+	//ventanas
+	game.addVisual(ventana1)
+	game.addVisual(ventana2)
+	game.addVisual(ventana3)
+	game.addVisual(ventana4)
+	
+	//escaleras
+	game.addVisual(escalera1) 
+	game.addVisual(escalera2) 
+	game.addVisual(escalera3) 
+	game.addVisual(escalera4) 
+	game.addVisual(escalera5) 
+	game.addVisual(escalera6) 
+	game.addVisual(escalera7) 
+	
+	//escalera abajo
+	game.addVisual(escalera_abajo1) 
+	game.addVisual(escalera_abajo2) 
+	
+ 
+ 	//personaje principal 
+	game.addVisual(faraon) //img en 250px
+	keyboard.left().onPressDo(  { faraon.mover(izquierda) } )
+	keyboard.right().onPressDo(  { faraon.mover(derecha) } )
+
+	keyboard.up().onPressDo(  { faraon.mover(arriba) } )
+	keyboard.down().onPressDo(  { faraon.mover(abajo) } )
+	
+	//game.onCollideDo(escalera1, {alguien => alguien.mover(arriba)})
+	//game.onCollideDo(escalera1, {alguien => alguien.mover(abajo)})
+
+	//empieza
+	game.start()
+
+}
