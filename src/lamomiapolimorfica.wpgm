@@ -35,11 +35,11 @@ program momiaGame {
  
  	//personaje principal 
 	game.addVisual(faraon) //img en 250px
-	keyboard.left().onPressDo(  { faraon.mover(izquierda) } )
-	keyboard.right().onPressDo(  { faraon.mover(derecha) } )
+	keyboard.left().onPressDo(  { faraon.moverIzquierda() } )
+	keyboard.right().onPressDo(  { faraon.moverDerecha() } )
 
-	keyboard.up().onPressDo(  { faraon.mover(arriba) } )
-	keyboard.down().onPressDo(  { faraon.mover(abajo) } )
+	keyboard.up().onPressDo(  { faraon.moverArriba() } )
+	keyboard.down().onPressDo(  { faraon.moverAbajo() } )
 	
 	//game.onCollideDo(escalera1, {alguien => alguien.mover(arriba)})
 	//game.onCollideDo(escalera1, {alguien => alguien.mover(abajo)})
