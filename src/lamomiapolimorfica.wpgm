@@ -11,17 +11,21 @@ program momiaGame {
 	game.boardGround("PIRAMIDE.jpg")
 	
 	//momia
-	game.addVisual(momia) 
+	//game.addVisual(momia) 
+	//game.addVisualCharacter(momia)
 	
+	momia.start()
+	
+
 	//ventanas
-	game.addVisual(ventana1)
-	game.addVisual(ventana2)
-	game.addVisual(ventana3)
-	game.addVisual(ventana4)
+
+	
+
+	ventana.mostrar()
 	
 	//escaleras
 	game.addVisual(escalera1) 
-	game.addVisual(escalera2) 
+//	game.addVisual(escalera2) 
 	game.addVisual(escalera3) 
 	game.addVisual(escalera4) 
 	game.addVisual(escalera5) 
@@ -30,19 +34,22 @@ program momiaGame {
 	
 	//escalera abajo
 	game.addVisual(escalera_abajo1) 
-	game.addVisual(escalera_abajo2) 
+	game.addVisual(escalera_abajo2)
+	game.addVisual(escalera_abajo3) 
+	game.addVisual(escalera_abajo4) 
+	game.addVisual(escalera_abajo5) 
+	game.addVisual(escalera_abajo6) 
 	
  
  	//personaje principal 
 	game.addVisual(faraon) //img en 250px
-	keyboard.left().onPressDo(  { faraon.moverIzquierda() } )
-	keyboard.right().onPressDo(  { faraon.moverDerecha() } )
 
-	keyboard.up().onPressDo(  { faraon.moverArriba() } )
-	keyboard.down().onPressDo(  { faraon.moverAbajo() } )
+	keyboard.a().onPressDo(  { faraon.moverIzquierda() } )
+	keyboard.d().onPressDo(  { faraon.moverDerecha() } )
+	keyboard.w().onPressDo(  { faraon.moverArriba() } )
+	keyboard.s().onPressDo(  { faraon.moverAbajo() } )
 	
-	//game.onCollideDo(escalera1, {alguien => alguien.mover(arriba)})
-	//game.onCollideDo(escalera1, {alguien => alguien.mover(abajo)})
+
 
 	//empieza
 	game.start()

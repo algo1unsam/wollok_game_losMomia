@@ -3,7 +3,7 @@ import objetos.*
 
 object faraon {
 
-	var property position=game.at(5, 0)
+	var property position=game.at(0, 0)
 	var property caminaDerecha
 	var property caminaIzquierda
 	
@@ -110,64 +110,34 @@ object faraon {
 		}
 	}
 	
+	
 	method moverArriba() {
+ 		
+		if (game.colliders(self)== [escalera4] ){position=position.up(2)}
+		else{		
 		caminaDerecha=0
 		caminaIzquierda=0
 		self.image()
 		self.error("para subir necesito una escalera")
-		//{position=position.up(1)}
+		}
+		
 	}
 	
+
+	
 	method moverAbajo() {
+		
+		if (game.colliders(self)== [escalera_abajo1] ){
+			position=position.down(2)
+		}
+		else{			
 		caminaDerecha=0
 		caminaIzquierda=0
 		self.image()
 		self.error("para bajar necesito una escalera")
-		//{position=position.down(1)}
+		}
+
 	}
 	
-	}
+}
 	
-//	method mover(direccion) {
-//		position=direccion.siguiente(position)
-//	}
-//
-//}
-//
-//object izquierda {
-//	method siguiente(position) {
-//		return 	position.left(1)
-//	}
-//}
-//
-//object derecha {
-//	method siguiente(position) {
-//		return 	position.right(1)		
-//	}	
-//}
-//
-//object abajo {
-//	
-//	method siguiente(position) {
-//		//if(self.position() == colliders(escalera)){
-//		//return position.down(1)
-//		//}
-//		//else{
-//		//	return 0
-//		
-//	
-//			return position.down(2) 
-//			
-//	}
-//	
-//}
-//
-//object arriba {
-//	method siguiente(position) {
-//		if(game.colliders(self)== escalera1){
-//		return position.up(2)
-//		}
-//		return position
-//	}
-//		
-//}
