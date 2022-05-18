@@ -1,6 +1,8 @@
 import wollok.game.*
 import faraon.*
 
+
+//VENTANAS
 object ventana {
 
 	const listaVentana = []
@@ -21,8 +23,6 @@ object ventana {
 		listaVentana.forEach({ ventana => game.addVisual(ventana)})
 	}
 
-}
-
 // ventanas posiciones
 // y,x
 // 15,6
@@ -30,30 +30,36 @@ object ventana {
 // 2,6
 // 2,2
 //
-//object ventana1 {
-//	var property position=game.at(15, 6) 
-//	method image() {return "ventana2.png"}
-//}
-//
-//object ventana3 {
-//	var property position=game.at(2, 6) 
-//	method image() {return "ventana2.png"}
-//}
-//
-//object ventana2 {
-//	var property position=game.at(15, 2) 
-//	method image() {return "ventana.png"}
-//}
-//object ventana4 {
-//	var property position=game.at(2, 2) 
-//	method image() {return "ventana.png"}
-//}
+}
+
 class Ventana {
 
 	var property position
 
 	method image() = "ventana.png"
 }
+//VENTANAS
+
+
+//ESCALERAS
+
+object escalera {
+
+	
+	const property listaEscalera = []
+
+	method crear(x, y) {
+		listaEscalera.add(new Escalera(position = game.at(x, y)))
+	}
+
+	method cargar() {
+		self.crear(5, 0)
+		self.crear(5, 4)
+		self.crear(13, 0)
+		self.crear(13, 4)
+		self.crear(17, 2)
+		self.crear(9, 2)
+		
 //posiciones escaleras
 //5,0
 //5,2
@@ -62,127 +68,59 @@ class Ventana {
 //13,4
 //17,2
 //9,2
-object escalera3 {
 
-	var property position = game.at(5, 4)
+	}
 
-	method image() {
-		return "escalera.png"
+	method mostrar() {
+		self.cargar()
+		listaEscalera.forEach({ escalera => game.addVisual(escalera)})
 	}
 
 }
 
-//object escalera2{
-//	var property position=game.at(5,2)
-//	method image() {return "escalera.png"}
-//}
-object escalera1 {
+class Escalera {
 
-	var property position = game.at(5, 0)
+	var property position
 
-	method image() {
-		return "escalera2.png"
+	method image() = "escalera.png"
+}
+
+
+//ESCALERAS
+
+//ESCALERAS ABAJO
+
+object escaleraAbajo {
+
+	
+	const property listaEscaleraAbajo = []
+
+	method crear(x, y) {
+		listaEscaleraAbajo.add(new EscaleraAbajo(position = game.at(x, y)))
+	}
+
+	method cargar() {
+		self.crear(5, 2)
+		self.crear(5, 6)
+		self.crear(9, 4)
+		self.crear(13, 2)
+		self.crear(13, 6)
+		self.crear(17, 4)
+	}
+
+	method mostrar() {
+		self.cargar()
+		listaEscaleraAbajo.forEach({ escaleraAbajo => game.addVisual(escaleraAbajo)})
 	}
 
 }
 
-object escalera5 {
+class EscaleraAbajo {
 
-	var property position = game.at(13, 4)
+	var property position
 
-	method image() {
-		return "escalera.png"
-	}
-
+	method image() = "escalera_abajo.png"
 }
 
-object escalera6 {
 
-	var property position = game.at(17, 2)
-
-	method image() {
-		return "escalera.png"
-	}
-
-}
-
-object escalera7 {
-
-	var property position = game.at(9, 2)
-
-	method image() {
-		return "escalera.png"
-	}
-
-}
-
-object escalera4 {
-
-	var property position = game.at(13, 0)
-
-	method image() {
-		return "escalera2.png"
-	}
-
-}
-
-object escalera_abajo1 {
-
-	var property position = game.at(5, 2)
-
-	method image() {
-		return "escalera_abajo.png"
-	}
-
-}
-
-object escalera_abajo2 {
-
-	var property position = game.at(5, 6)
-
-	method image() {
-		return "escalera_abajo.png"
-	}
-
-}
-
-object escalera_abajo3 {
-
-	var property position = game.at(9, 4)
-
-	method image() {
-		return "escalera_abajo.png"
-	}
-
-}
-
-object escalera_abajo4 {
-
-	var property position = game.at(13, 2)
-
-	method image() {
-		return "escalera_abajo.png"
-	}
-
-}
-
-object escalera_abajo5 {
-
-	var property position = game.at(13, 6)
-
-	method image() {
-		return "escalera_abajo.png"
-	}
-
-}
-
-object escalera_abajo6 {
-
-	var property position = game.at(17, 4)
-
-	method image() {
-		return "escalera_abajo.png"
-	}
-
-}
-
+//ESCALERAS ABAJO

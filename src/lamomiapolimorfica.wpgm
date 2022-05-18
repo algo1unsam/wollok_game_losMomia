@@ -18,27 +18,14 @@ program momiaGame {
 	
 
 	//ventanas
-
-	
-
 	ventana.mostrar()
 	
 	//escaleras
-	game.addVisual(escalera1) 
-//	game.addVisual(escalera2) 
-	game.addVisual(escalera3) 
-	game.addVisual(escalera4) 
-	game.addVisual(escalera5) 
-	game.addVisual(escalera6) 
-	game.addVisual(escalera7) 
+	escalera.mostrar()
+
 	
 	//escalera abajo
-	game.addVisual(escalera_abajo1) 
-	game.addVisual(escalera_abajo2)
-	game.addVisual(escalera_abajo3) 
-	game.addVisual(escalera_abajo4) 
-	game.addVisual(escalera_abajo5) 
-	game.addVisual(escalera_abajo6) 
+	escaleraAbajo.mostrar()
 	
  
  	//personaje principal 

@@ -112,8 +112,15 @@ object faraon {
 	
 	
 	method moverArriba() {
- 		
-		if (game.colliders(self)== [escalera4] ){position=position.up(2)}
+ 
+// otra forma para que suba en todas las escaleras(supongo que colisiona solo con una escalera)		
+//		if (escalera.listaEscalera().contains(game.colliders(self).get(0))){
+//			position=position.up(2)
+//		}
+
+		if (  game.colliders(self).fold(false, {acum, element => escalera.listaEscalera().contains(element) or acum })    ){
+			position=position.up(2)
+		}
 		else{		
 		caminaDerecha=0
 		caminaIzquierda=0
@@ -127,7 +134,7 @@ object faraon {
 	
 	method moverAbajo() {
 		
-		if (game.colliders(self)== [escalera_abajo1] ){
+		if (  game.colliders(self).fold(false, {acum, element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })    ){
 			position=position.down(2)
 		}
 		else{			
