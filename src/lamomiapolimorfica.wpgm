@@ -10,10 +10,6 @@ program momiaGame {
 	game.width(19) //15 //25
 	game.boardGround("PIRAMIDE.jpg")
 	
-	//momia
-	//game.addVisual(momia) 
-	//game.addVisualCharacter(momia)
-	
 	momia.start()
 	
 
@@ -31,10 +27,11 @@ program momiaGame {
  	//personaje principal 
 	game.addVisual(faraon) //img en 250px
 
-	keyboard.a().onPressDo(  { faraon.moverIzquierda() } )
-	keyboard.d().onPressDo(  { faraon.moverDerecha() } )
-	keyboard.w().onPressDo(  { faraon.moverArriba() } )
-	keyboard.s().onPressDo(  { faraon.moverAbajo() } )
+
+	keyboard.left().onPressDo(  { faraon.moverIzquierda() } )
+	keyboard.right().onPressDo(  { faraon.moverDerecha() } )
+	keyboard.up().onPressDo(  { faraon.moverArriba() } )
+	keyboard.down().onPressDo(  { faraon.moverAbajo() } )
 	
 
 

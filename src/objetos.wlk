@@ -45,7 +45,6 @@ class Ventana {
 
 object escalera {
 
-	
 	const property listaEscalera = []
 
 	method crear(x, y) {
