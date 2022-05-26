@@ -1,11 +1,16 @@
 import wollok.game.*
 import objetos.*
+import cuentas.*
 
 object faraon {
 
 	var property position=game.at(0, 0)
 	var property caminaDerecha
 	var property caminaIzquierda
+	
+	var property almacenar1 = 9999
+	var property almacenar2 = -9999
+	
 	
 	method image() {
 		if(caminaDerecha==1){return "faraon_camina_derecha_1.png"}
@@ -151,6 +156,52 @@ object faraon {
 		}
 
 	}
+	
+	
+	
+	
+	//CUENTAS
+ 
+	
+	method cuenta(){
+ 
+		if (self.position() == cuenta1.position() ){
+			self.almacenar1(cuenta1.total())
+		}
+		
+		if (self.position() == resultado1.position() ){
+			self.almacenar2(resultado1.total())
+		}
+
+		game.say(self, "nro1: " + self.almacenar1() )
+		game.say(self, "nro2: " + self.almacenar2() )
+
+
+		if ( self.almacenar1() == self.almacenar2() ){
+			game.removeVisual(cuenta1)
+			game.removeVisual(resultado1)
+			game.say(self, "la cuenta es correcta!")
+		}
+		
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 	

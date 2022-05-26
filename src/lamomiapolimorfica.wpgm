@@ -2,6 +2,7 @@ import faraon.*
 import momia.*
 import objetos.*
 import wollok.game.*
+import cuentas.*
 
 program momiaGame {
 	//configuraciones de pantalla
@@ -26,13 +27,22 @@ program momiaGame {
  
  	//personaje principal 
 	game.addVisual(faraon) //img en 250px
-
+	
+//	game.addVisualCharacter(faraon) 
 
 	keyboard.left().onPressDo(  { faraon.moverIzquierda() } )
 	keyboard.right().onPressDo(  { faraon.moverDerecha() } )
 	keyboard.up().onPressDo(  { faraon.moverArriba() } )
 	keyboard.down().onPressDo(  { faraon.moverAbajo() } )
 	
+	
+// 	CUENTAS
+	game.addVisual(cuenta1)
+	game.addVisual(resultado1)
+	keyboard.c().onPressDo(  { faraon.cuenta() } )
+	
+	
+
 
 
 	//empieza
