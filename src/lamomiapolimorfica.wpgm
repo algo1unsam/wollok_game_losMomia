@@ -41,15 +41,10 @@ program momiaGame {
 	
 	
 
-	keyboard.space().onPressDo(  { faraon.cuentas() } 
+	keyboard.space().onPressDo(  { faraon.cuentas() } )
 
 		
-	
-	
-
-
-
 	//empieza
 	game.start()
-
+	
 }

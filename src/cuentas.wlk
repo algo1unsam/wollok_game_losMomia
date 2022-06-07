@@ -32,8 +32,6 @@ class Cuenta {
 	var property nro1 = (5..10).anyOne()
 	var property nro2 = (50..100).anyOne()
 	
-
-	
 //	const operacion = {1, 2, 3}.anyOne()
 
 	var property total = nro1 + nro2
@@ -84,23 +82,25 @@ object resultado {
 
 class Resultado {
 
-//	var property nro1 = (5..10).anyOne()
-//	var property nro2 = (50..100).anyOne()
+	var property nro1 = (5..10).anyOne()
+	var property nro2 = (50..100).anyOne()
 //	const operacion = {1, 2, 3}.anyOne()
 
+	var property total = nro1 + nro2
+
   var property position
-  var property total
+ 
 	method image() {
 		
 		return "cuenta.png"
 	}
 
 
-	 method text(){
+	method text(){
 	 	
 //	 	total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).first()
 	 	
-	 	 
+	 
 		return ''+total+''  // solo suma
 
 	} 
