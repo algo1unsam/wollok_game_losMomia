@@ -12,10 +12,9 @@ object ventana {
 	}
 
 	method cargar() {
-		self.crear(15, 6)
-		self.crear(15, 2)
-		self.crear(2, 6)
-		self.crear(2, 2)
+		self.crear(13, 6)
+		self.crear(6, 2)
+		self.crear(14, 0)
 	}
 
 	method mostrar() {
@@ -23,13 +22,6 @@ object ventana {
 		listaVentana.forEach({ ventana => game.addVisual(ventana)})
 	}
 
-// ventanas posiciones
-// y,x
-// 15,6
-// 15,2
-// 2,6
-// 2,2
-//
 }
 
 class Ventana {
@@ -52,23 +44,11 @@ object escalera {
 	}
 
 	method cargar() {
-		self.crear(5, 0)
-		self.crear(5, 4)
-		self.crear(13, 0)
-		self.crear(13, 4)
-		self.crear(17, 2)
-		self.crear(9, 2)
-		
-//posiciones escaleras
-//5,0
-//5,2
-//5,4
-//13,0
-//13,4
-//17,2
-//9,2
-
-	}
+		self.crear(9, 0)
+		self.crear(11, 4)
+		self.crear(3, 2)
+		self.crear(15, 2)
+		}
 
 	method mostrar() {
 		self.cargar()
@@ -99,12 +79,10 @@ object escaleraAbajo {
 	}
 
 	method cargar() {
-		self.crear(5, 2)
-		self.crear(5, 6)
-		self.crear(9, 4)
-		self.crear(13, 2)
-		self.crear(13, 6)
-		self.crear(17, 4)
+		self.crear(9, 2)
+		self.crear(3, 4)
+		self.crear(15, 4)
+		self.crear(11, 6)
 	}
 
 	method mostrar() {

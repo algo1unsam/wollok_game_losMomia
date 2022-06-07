@@ -4,12 +4,16 @@ import cuentas.*
 
 object faraon {
 
-	var property position=game.at(0, 0)
+	var property position=game.at(10, 4)
 	var property caminaDerecha
 	var property caminaIzquierda
 	
 	var property almacenar1 = 9999
 	var property almacenar2 = -9999
+	var property almacenoTemp1
+	var property almacenoTemp2 
+	
+
 	
 	
 	method image() {
@@ -163,34 +167,62 @@ object faraon {
 	//CUENTAS
  
 	
-	method cuenta(){
- 
-		if (self.position() == cuenta1.position() ){
-			self.almacenar1(cuenta1.total())
+//	method cuentas(){
+// 
+//		if (self.position() == Cuenta.position() ){
+//			self.almacenar1(Cuenta.total())
+//		}
+//		
+//		if (self.position() == Resultado.position() ){
+//			self.almacenar2(Resultado.total())
+//		}
+//
+//		game.say(self, "nro1: " + self.almacenar() )
+//		game.say(self, "nro2: " + self.almacenar() )
+//
+//
+//		if ( self.almacenar() == self.almacenar() ){
+//			game.removeVisual(Cuenta)
+//			game.removeVisual(Cesultado)
+//			game.say(self, "la cuenta es correcta!")
+//		}
+//		
+//
+//	}
+	
+	method cuentas(){
+		if (  game.colliders(self).fold(false, {acum, element => cuenta.listaCuenta().contains(element) or acum })    ){
+			
+			self.almacenar1 ( game.colliders(self).first().total() )
+			game.say(self, "nro1: " + self.almacenar1() )
+			almacenoTemp1 = game.colliders(self).first()
 		}
-		
-		if (self.position() == resultado1.position() ){
-			self.almacenar2(resultado1.total())
-		}
-
-		game.say(self, "nro1: " + self.almacenar1() )
-		game.say(self, "nro2: " + self.almacenar2() )
 
 
-		if ( self.almacenar1() == self.almacenar2() ){
-			game.removeVisual(cuenta1)
-			game.removeVisual(resultado1)
+		if (  game.colliders(self).fold(false, {acum, element => resultado.listaResultado().contains(element) or acum })    ){
+				self.almacenar2 ( game.colliders(self).first().total() )
+				game.say(self, "nro2: " + self.almacenar2() )
+				almacenoTemp2 = game.colliders(self).first()
+			}
+			
+
+				if ( self.almacenar1() == self.almacenar2() ){
+			game.removeVisual( almacenoTemp1 )
+			game.removeVisual( almacenoTemp2 )
 			game.say(self, "la cuenta es correcta!")
 		}
+
+ 
+
 		
 
 	}
 	
+//			self.almacenar1(      cuenta.listaCuenta().colliders(self).total()    )	
 	
+//			self.almacenar1(     cuenta.listaCuenta().find({ cuentaa => cuentaa.total() })   ) dice algo coherente
 	
-	
-	
-	
+//self.almacenar1(      cuenta.listaCuenta().first().total()    )   coherente 2 	
 	
 	
 	

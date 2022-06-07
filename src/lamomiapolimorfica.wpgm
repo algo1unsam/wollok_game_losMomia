@@ -1,7 +1,7 @@
+import wollok.game.*
 import faraon.*
 import momia.*
 import objetos.*
-import wollok.game.*
 import cuentas.*
 
 program momiaGame {
@@ -11,7 +11,7 @@ program momiaGame {
 	game.width(19) //15 //25
 	game.boardGround("PIRAMIDE.jpg")
 	
-	momia.start()
+	//momia.start()
 	
 
 	//ventanas
@@ -24,6 +24,10 @@ program momiaGame {
 	//escalera abajo
 	escaleraAbajo.mostrar()
 	
+// 	CUENTAS
+	cuenta.mostrar()
+	resultado.mostrar()
+
  
  	//personaje principal 
 	game.addVisual(faraon) //img en 250px
@@ -36,10 +40,10 @@ program momiaGame {
 	keyboard.down().onPressDo(  { faraon.moverAbajo() } )
 	
 	
-// 	CUENTAS
-	game.addVisual(cuenta1)
-	game.addVisual(resultado1)
-	keyboard.c().onPressDo(  { faraon.cuenta() } )
+
+	keyboard.space().onPressDo(  { faraon.cuentas() } 
+
+		
 	
 	
 
