@@ -6,7 +6,7 @@ object cuenta {
 	var property listaCuenta = []
 
 	method crear(x, y) {
-		listaCuenta.add(new Cuenta(position = game.at(x, y)))
+		listaCuenta.add(new Cuenta(position = game.at(x, y)  ))
 	}
 
 	method cargar() {
@@ -22,6 +22,7 @@ object cuenta {
 		self.cargar()
 		listaCuenta.forEach({ cuenta => game.addVisual(cuenta)})
 	}
+ 
 
 
 }
@@ -56,7 +57,8 @@ object resultado {
 	const property listaResultado = []
 
 	method crear(x, y) {
-		listaResultado.add(new Resultado(position = game.at(x, y)))
+		const totales = cuenta.listaCuenta().map({ cuenta => cuenta.total() })
+		totales.forEach({ _total => listaResultado.add(new Resultado(position = game.at(x, y), total=_total)) })
 	}
 
 	method cargar() {
@@ -82,12 +84,7 @@ object resultado {
 
 class Resultado {
 
-	var property nro1 = (5..10).anyOne()
-	var property nro2 = (50..100).anyOne()
-//	const operacion = {1, 2, 3}.anyOne()
-
-	var property total = nro1 + nro2
-
+	var property total = 0
   var property position
  
 	method image() {
@@ -98,9 +95,11 @@ class Resultado {
 
 	method text(){
 	 	
-//	 	total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).first()
+	 	total = total.ToString()
 	 	
-	 
+ 		
+	  
+	 	
 		return ''+total+''  // solo suma
 
 	} 

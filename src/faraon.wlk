@@ -166,29 +166,7 @@ object faraon {
 	
 	//CUENTAS
  
-	
-//	method cuentas(){
-// 
-//		if (self.position() == Cuenta.position() ){
-//			self.almacenar1(Cuenta.total())
-//		}
-//		
-//		if (self.position() == Resultado.position() ){
-//			self.almacenar2(Resultado.total())
-//		}
-//
-//		game.say(self, "nro1: " + self.almacenar() )
-//		game.say(self, "nro2: " + self.almacenar() )
-//
-//
-//		if ( self.almacenar() == self.almacenar() ){
-//			game.removeVisual(Cuenta)
-//			game.removeVisual(Cesultado)
-//			game.say(self, "la cuenta es correcta!")
-//		}
-//		
-//
-//	}
+	 
 	
 	method cuentas(){
 		if (  game.colliders(self).fold(false, {acum, element => cuenta.listaCuenta().contains(element) or acum })    ){
@@ -226,14 +204,7 @@ object faraon {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 }
 	
