@@ -6,23 +6,48 @@ import faraon.*
 object cuenta {
 
 	var property listaCuenta = []
+	var property listaResultado = []
 
-	method crear(x, y) {
-		listaCuenta.add(new Cuenta(position = game.at(x, y)))
-	}
-
-	method cargar() {
-		self.crear(5, 0)
-		self.crear(16, 0)
-		self.crear(1, 2)
-		self.crear(13, 4)
-		self.crear(1, 6)
-		self.crear(8, 6)
-	}
 
 	method mostrar() {
-		self.cargar()
+		const cuenta1 = new Cuenta(position = game.at(5, 0) , nro1= (1..100).anyOne() , nro2= (1..100).anyOne())
+		const cuenta2 = new Cuenta(position = game.at(16, 0) , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+		const cuenta3 = new Cuenta(position = game.at(1, 2) , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+		const cuenta4 = new Cuenta(position = game.at(13, 4), nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+		const cuenta5 = new Cuenta(position = game.at(1, 6) , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+		const cuenta6 = new Cuenta(position = game.at(8, 6) , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+
+
+		const resultado1 = new Resultado(position = game.at(2, 0) , total= cuenta1.total() )
+		const resultado2 = new Resultado(position = game.at(11, 0), total= cuenta2.total()  )
+		const resultado3 = new Resultado(position = game.at(16, 2) , total= cuenta3.total()  )
+		const resultado4 = new Resultado(position = game.at(11, 2), total= cuenta4.total()  )
+		const resultado5 = new Resultado(position = game.at(5, 4) , total= cuenta5.total()  )
+		const resultado6 = new Resultado(position = game.at(16, 6) , total= cuenta6.total()  )
+
+ 
+
+		listaCuenta.add(cuenta1)
+		listaCuenta.add(cuenta2)
+		listaCuenta.add(cuenta3)
+		listaCuenta.add(cuenta4)
+		listaCuenta.add(cuenta5)
+		listaCuenta.add(cuenta6)
+		
+		listaResultado.add(resultado1)
+		listaResultado.add(resultado2)
+		listaResultado.add(resultado3)
+		listaResultado.add(resultado4)
+		listaResultado.add(resultado5)
+		listaResultado.add(resultado6)
+		
+		
+		const listaDeResultados = listaCuenta.map({ cuenta => cuenta.total()})
+		
 		listaCuenta.forEach({ cuenta => game.addVisual(cuenta)})
+		listaResultado.forEach({ resultado => game.addVisual(resultado)})
+		
+		
 	}
 
 
@@ -31,10 +56,8 @@ object cuenta {
 //CUENTA
 class Cuenta {
 
-	var property nro1 = (5..10).anyOne()
-	var property nro2 = (50..100).anyOne()
-	
-//	const operacion = {1, 2, 3}.anyOne()
+	var property nro1 = 0
+	var property nro2 = 0
 
 	var property total = nro1 + nro2
 
@@ -53,36 +76,6 @@ class Cuenta {
 }
 
 
-object resultado {
-
-	var property contador = 1
-	var property nro = 1
-	const property listaResultado = []
-
-	method crear(x, y) {
-		listaResultado.add(new Resultado(position = game.at(x, y)))
-	}
-
-	method cargar() {
-		self.crear(2, 0)
-		self.crear(11, 0)
-		self.crear(16, 2)
-		self.crear(11, 2)
-		self.crear(5, 4)
-		self.crear(16, 6)
-	}
-
-	method mostrar() {
-		self.cargar()
-		listaResultado.forEach({ resultado => game.addVisual(resultado)})
-	}
-
-	method contador(nro){
-		nro = nro + 1
-		return nro
-	}
-
-}
 
 
 //RESULTADO
@@ -91,7 +84,6 @@ class Resultado {
 
 	var property nro1 = 0
 	var property nro2 = 0
-//	const operacion = {1, 2, 3}.anyOne()
 
 	var property total = nro1 + nro2
 
@@ -104,27 +96,8 @@ class Resultado {
 
 
 	method text(){
-
-	 	
-//	 	total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).first()
-	 	
-	 //	total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).anyOne()
 	 
-//	 	total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).anyOne()
-	 
-//	 	game.onTick(1000, "StopOnTickText", { => cuenta.listaCuenta().map({ cuenta => cuenta.total() }).anyOne() })
-
-
-		//cuenta.listaCuenta().size()
-		
-if (cuenta.listaCuenta().size() == resultado.contador() ){
-	resultado.contador(1)
-}
-		total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).get(resultado.contador())
-
-		
-	 
-		return ''+total+''  // solo suma
+		return ''+total+'' 
 
 	} 
 }

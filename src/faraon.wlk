@@ -177,7 +177,7 @@ object faraon {
 		}
 
 
-		if (  game.colliders(self).fold(false, {acum, element => resultado.listaResultado().contains(element) or acum })    ){
+		if (  game.colliders(self).fold(false, {acum, element => cuenta.listaResultado().contains(element) or acum })    ){
 				self.almacenar2 ( game.colliders(self).first().total() )
 				game.say(self, "nro2: " + self.almacenar2() )
 				almacenoTemp2 = game.colliders(self).first()
@@ -188,8 +188,6 @@ object faraon {
 			game.removeVisual( almacenoTemp1 )
 			game.removeVisual( almacenoTemp2 )
 			game.say(self, "la cuenta es correcta!")
-			resultado.contador(1)
-			cuenta.listaCuenta().drop(1)
 		}
 
  
@@ -198,12 +196,7 @@ object faraon {
 
 	}
 	
-//			self.almacenar1(      cuenta.listaCuenta().colliders(self).total()    )	
-	
-//			self.almacenar1(     cuenta.listaCuenta().find({ cuentaa => cuentaa.total() })   ) dice algo coherente
-	
-//self.almacenar1(      cuenta.listaCuenta().first().total()    )   coherente 2 	
-	
+
 	
 	
 
