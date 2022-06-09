@@ -188,6 +188,8 @@ object faraon {
 			game.removeVisual( almacenoTemp1 )
 			game.removeVisual( almacenoTemp2 )
 			game.say(self, "la cuenta es correcta!")
+			resultado.contador(1)
+			cuenta.listaCuenta().drop(1)
 		}
 
  

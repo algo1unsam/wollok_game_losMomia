@@ -1,12 +1,14 @@
 import wollok.game.*
 import faraon.*
 
+
+
 object cuenta {
 
 	var property listaCuenta = []
 
 	method crear(x, y) {
-		listaCuenta.add(new Cuenta(position = game.at(x, y)  ))
+		listaCuenta.add(new Cuenta(position = game.at(x, y)))
 	}
 
 	method cargar() {
@@ -22,7 +24,6 @@ object cuenta {
 		self.cargar()
 		listaCuenta.forEach({ cuenta => game.addVisual(cuenta)})
 	}
- 
 
 
 }
@@ -54,11 +55,12 @@ class Cuenta {
 
 object resultado {
 
+	var property contador = 1
+	var property nro = 1
 	const property listaResultado = []
 
 	method crear(x, y) {
-		const totales = cuenta.listaCuenta().map({ cuenta => cuenta.total() })
-		totales.forEach({ _total => listaResultado.add(new Resultado(position = game.at(x, y), total=_total)) })
+		listaResultado.add(new Resultado(position = game.at(x, y)))
 	}
 
 	method cargar() {
@@ -75,7 +77,10 @@ object resultado {
 		listaResultado.forEach({ resultado => game.addVisual(resultado)})
 	}
 
-
+	method contador(nro){
+		nro = nro + 1
+		return nro
+	}
 
 }
 
@@ -84,7 +89,12 @@ object resultado {
 
 class Resultado {
 
-	var property total = 0
+	var property nro1 = 0
+	var property nro2 = 0
+//	const operacion = {1, 2, 3}.anyOne()
+
+	var property total = nro1 + nro2
+
   var property position
  
 	method image() {
@@ -94,12 +104,26 @@ class Resultado {
 
 
 	method text(){
+
 	 	
-	 	total = total.ToString()
+//	 	total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).first()
 	 	
- 		
-	  
-	 	
+	 //	total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).anyOne()
+	 
+//	 	total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).anyOne()
+	 
+//	 	game.onTick(1000, "StopOnTickText", { => cuenta.listaCuenta().map({ cuenta => cuenta.total() }).anyOne() })
+
+
+		//cuenta.listaCuenta().size()
+		
+if (cuenta.listaCuenta().size() == resultado.contador() ){
+	resultado.contador(1)
+}
+		total = cuenta.listaCuenta().map({ cuenta => cuenta.total() }).get(resultado.contador())
+
+		
+	 
 		return ''+total+''  // solo suma
 
 	} 
