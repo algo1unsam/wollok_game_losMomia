@@ -25,8 +25,9 @@ program momiaGame {
 	escaleraAbajo.mostrar()
 	
 // 	CUENTAS
-	cuenta.mostrar()
- 
+	cuentas.mostrar()
+ 	cuadros.mostrar()
+ 	textos.mostrar()
 
  
  	//personaje principal 
@@ -41,7 +42,7 @@ program momiaGame {
 	
 	
 
-	keyboard.space().onPressDo(  { faraon.cuentas() } )
+	keyboard.space().onPressDo(  { faraon.cuentasFaraon() } )
 
 		
 	//empieza

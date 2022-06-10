@@ -18,34 +18,61 @@ object momia {
 	method start() {
 		game.schedule(3000, { => game.addVisual(self)})
 		game.schedule(4000, { => contador++ })
-		self.image()
+//		self.image()
 		game.schedule(5000, { => contador++ })
-		self.image()
+//		self.image()
 		game.schedule(6000, { => contador++ })
-		self.image()
+//		self.image()
 		game.schedule(7000, { => contador++ })
-		self.image()
+//		self.image()
 		game.schedule(8000, { => position=position.left(1) })
 		game.schedule(9000, { => position=position.left(1) })
 		game.schedule(10000, { => position=position.down(1) })
 		game.schedule(11000, { => position=position.down(1) })
 		
-		game.schedule(12000, { => game.onTick(1000, "momiaStop", { => self.perseguir() })})
+		game.schedule(12000, { => game.onTick(350, "momiaStop", { => self.perseguir() })})  //estaba en 1000
 		
 		//self.perseguir()
 		
 	}
 	
 //			self.error("estas en el mismo piso!")
+
+
+
+	method verificarMismaPosicion() {
+		
+		if(self.position().x()==faraon.position().x() and self.position().y()==faraon.position().y()){
+			
+
+				game.removeTickEvent("momiaStop")
+				game.say(self, "te atrape2!")			 
+				game.schedule(2000, { => game.stop() })
+
+				
+			}
+		
+	}
 	
 	method perseguir(){
 		
+		
+		//te atrape mas rapido
+		
+		self.verificarMismaPosicion()
+		
+		
 //		si estoy en el mismo piso, me fijo si esta a mi izquierda o derecha y me muevo
 		if(self.position().y() == faraon.position().y()){
+			
+			
+			
 			if(self.position().x() > faraon.position().x()){
+				
 				game.schedule(1000, { => position=position.left(1) })
 			}
 			else{
+				
 				game.schedule(1000, { => position=position.right(1) })
 			}
 		}
@@ -57,10 +84,12 @@ object momia {
 				game.schedule(1000, { => position=position.left(1) })
 			}
 			else {
+				
 			game.schedule(1000, { => position=position.right(1) })
 			}
 
 			if (  game.colliders(self).fold(false, {acum, element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })    ){
+					
 			position=position.down(2)
 		}
 		
@@ -75,10 +104,13 @@ object momia {
 				game.schedule(1000, { => position=position.left(1) })
 			}
 			else {
+			
+			
 			game.schedule(1000, { => position=position.right(1) })
 			}
 
 			if (  game.colliders(self).fold(false, {acum, element => escalera.listaEscalera().contains(element) or acum })    ){
+			
 			position=position.up(2)
 		}
 			
@@ -86,16 +118,27 @@ object momia {
 		
 		if(self.position().x()==faraon.position().x()){
 			
+			
 			if(self.position().y()!=faraon.position().y()) {
 				
 			 game.removeVisual(self)
-			 if(self.position().y()>faraon.position().y()) {position=position.down(2)}
-			 else{position=position.up(2)}
+			 if(self.position().y()>faraon.position().y()) {
+			 	
+			 	position=position.down(2)
+			 }
+			 else{
+			 	
+			 	position=position.up(2)
+			 }
+			 
+			 
 			 game.schedule(500, { => game.addVisual(self) })
 			
 			}
 			
 			else {
+				
+				self.verificarMismaPosicion()
 				
 				game.removeTickEvent("momiaStop")
 				game.say(self, "te atrape!")			 

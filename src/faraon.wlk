@@ -1,6 +1,7 @@
 import wollok.game.*
 import objetos.*
 import cuentas.*
+import momia.*
 
 object faraon {
 
@@ -14,6 +15,18 @@ object faraon {
 	var property almacenoTemp2 
 	
 
+method verificarMismaPosicion() {
+		
+		if(self.position().x()==momia.position().x() and self.position().y()==momia.position().y()){
+			
+				game.removeVisual(self)
+				game.say(self, "me mato la momia!")			 
+				game.schedule(2000, { => game.stop() })
+
+				
+			}
+		
+	}
 	
 	
 	method image() {
@@ -31,6 +44,7 @@ object faraon {
 	}
 	
 	method moverIzquierda() {
+			self.verificarMismaPosicion()
 		
 		caminaDerecha=0
 	 	self.image()
@@ -73,7 +87,8 @@ object faraon {
 	}
 	
 	method moverDerecha() {
-		
+		self.verificarMismaPosicion()
+	
 		caminaIzquierda=0
 		self.image()
 		
@@ -121,7 +136,7 @@ object faraon {
 	
 	
 	method moverArriba() {
- 
+ 		self.verificarMismaPosicion()
  		caminaDerecha=0
 		caminaIzquierda=0
 		self.image()
@@ -145,7 +160,7 @@ object faraon {
 
 	
 	method moverAbajo() {
-		
+		self.verificarMismaPosicion()
 		caminaDerecha=0
 		caminaIzquierda=0
 		self.image()
@@ -168,18 +183,18 @@ object faraon {
  
 	 
 	
-	method cuentas(){
+	method cuentasFaraon(){
 		if (  game.colliders(self).fold(false, {acum, element => cuenta.listaCuenta().contains(element) or acum })    ){
 			
 			self.almacenar1 ( game.colliders(self).first().total() )
-			game.say(self, "nro1: " + self.almacenar1() )
+			game.say(self, "nro1: almacenado " ) // + self.almacenar1()
 			almacenoTemp1 = game.colliders(self).first()
 		}
 
 
 		if (  game.colliders(self).fold(false, {acum, element => cuenta.listaResultado().contains(element) or acum })    ){
 				self.almacenar2 ( game.colliders(self).first().total() )
-				game.say(self, "nro2: " + self.almacenar2() )
+				game.say(self, "nro2: almacenado"  ) //+ self.almacenar2()
 				almacenoTemp2 = game.colliders(self).first()
 			}
 			
