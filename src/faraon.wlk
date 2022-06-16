@@ -14,9 +14,10 @@ object faraon {
 	var property almacenoCuenta1
 	var property almacenoCuenta2
 	var property almacenoCuadro1 
-	var property almacenoCuadro2 
+	var property almacenoCuadro2
 
 //		var property almaceno = []
+
 
 method verificarMismaPosicion() {
 		
@@ -49,7 +50,7 @@ method verificarMismaPosicion() {
 		
 		if(self.position().x()<1)  {
 			caminaIzquierda=0
-			self.error("no puedo moverme más a la izquierda")
+			//self.error("no puedo moverme más a la izquierda")
 		}
 		else {if(caminaIzquierda==1){
 						caminaIzquierda++
@@ -82,7 +83,7 @@ method verificarMismaPosicion() {
 		caminaIzquierda=0
 		if(self.position().x()>17)  {
 			caminaDerecha=0
-			self.error("no puedo moverme más a la derecha")
+			//self.error("no puedo moverme más a la derecha")
 		}
 		else {
 					if(caminaDerecha==1){
@@ -177,11 +178,11 @@ method verificarMismaPosicion() {
 			
 
 		if ( self.almacenar1() == self.almacenar2() ){
+			puntosDelFaraon.sumar(almacenar2)
 			game.removeVisual(almacenoCuenta1)
 			game.removeVisual(almacenoCuenta2)
 			game.removeVisual(almacenoCuadro1)
 			game.removeVisual(almacenoCuadro2)
-			
 //			almaceno.forEach({ cosas => game.removeVisual(cosas) })
 //			almaceno.clear()
 			
@@ -190,6 +191,19 @@ method verificarMismaPosicion() {
 
 	}
 	
+	
+}
+
+object puntosDelFaraon{
+	var property puntosAcumulados = 0
+
+	var property position=game.at(15, 8)
+
+	method text(){return 'PUNTAJE: '+ self.puntosAcumulados()}
+	
+	method sumar(valor){
+		puntosAcumulados += valor
+	}
 	
 }
 	

@@ -34,6 +34,8 @@ object juego {
 
 	momia.start()
 	
+	// mostrar puntaje
+	game.addVisual(puntosDelFaraon)
 
  	//personaje principal 
 	game.addVisual(faraon) //img en 250px

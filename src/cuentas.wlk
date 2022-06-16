@@ -4,10 +4,7 @@ import faraon.*
 class Cuadro{
 	var property position
 	
-	method image() {
-		
-		return "cuenta.png"
-	}
+	method image(){return "cuenta.png"}
 	
 }
  
@@ -65,6 +62,12 @@ object cuentas {
 		listaCuadros.remove(cuadroElegido)
 		return cuadroElegido
 	}
+	
+//	method generarNumero1a100(){return (1..100).anyOne()}
+//	method generarNumero50a100(){return (50..100).anyOne()}
+//	method generarNumero1a50(){return (1..50).anyOne()}
+//	method generarNumero6a14(){return (6..14).anyOne()}
+//	method generarNumero3a16(){return (3..50).anyOne()}
 
 }
 

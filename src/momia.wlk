@@ -60,7 +60,7 @@ object momia {
 		else if (self.position().y() > faraon.position().y()) {
 			
 //			si la momia esta encima del faraon
-			if ( self.position().x() > faraon.position().x() ){
+			if ( self.position().x() > faraon.position().x() ){   
 				
 				game.schedule(1000, { => position=position.left(1) })
 			}
@@ -68,7 +68,9 @@ object momia {
 				
 			game.schedule(1000, { => position=position.right(1) })
 			}
-
+//BUSCAR ALGUNA ESCALERA CON EL MISMO EJE Y (BUSCAR EN LISTA ESCALERAS ALGUNA)
+ 
+// ESTO BAJA CUANDO LA ENCUENTRA
 			if (  game.colliders(self).fold(false, {acum, element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })    ){
 					
 			position=position.down(2)
