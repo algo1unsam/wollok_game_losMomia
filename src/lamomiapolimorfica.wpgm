@@ -3,44 +3,19 @@ import faraon.*
 import momia.*
 import objetos.*
 import cuentas.*
+import menu.*
 
 program momiaGame {
 	//configuraciones de pantalla
 	game.title("LA MOMIA POLIMORFICA")
 	game.height(10) //10 //15
 	game.width(19) //15 //25
+	
 	game.boardGround("PIRAMIDE.jpg")
 	
-	//ventanas
-	ventana.mostrar()
+	menu.ejecutar()
+	keyboard.enter().onPressDo(  { juego.empezar() } )
 	
-	//escaleras
-	escalera.mostrar()
-	
-	//escalera abajo
-	escaleraAbajo.mostrar()
-	
-	// 	CUENTAS
-	cuentas.mostrar()
-	
-	// FARAON
-
-	momia.start()
-	
-
- 	//personaje principal 
-	game.addVisual(faraon) //img en 250px
-	
-//	game.addVisualCharacter(faraon) 
-
-	keyboard.left().onPressDo(  { faraon.moverIzquierda() } )
-	keyboard.right().onPressDo(  { faraon.moverDerecha() } )
-	keyboard.up().onPressDo(  { faraon.moverArriba() } )
-	keyboard.down().onPressDo(  { faraon.moverAbajo() } )
-
-	keyboard.space().onPressDo(  { faraon.cuentasFaraon() } )
-
-		
 	//empieza
 	game.start()
 	
