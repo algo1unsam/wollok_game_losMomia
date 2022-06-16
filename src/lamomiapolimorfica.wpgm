@@ -25,9 +25,9 @@ program momiaGame {
 	escaleraAbajo.mostrar()
 	
 // 	CUENTAS
-	cuentas.mostrar()
  	cuadros.mostrar()
- 	textos.mostrar()
+	cuentas.mostrar()
+ 	//textos.mostrar()
 
  
  	//personaje principal 
