@@ -4,9 +4,8 @@ import objetos.*
 
 object momia {
 
-	var property position = game.at(9, 8) // arranca aca
+	var property position = game.at(9, 8)
 	var property contador=0
-	
 
 	method image() {
 		if (contador==0) {return "momia_tumba_abierta_1.png"}
@@ -16,63 +15,45 @@ object momia {
 	}
 
 	method start() {
+		
+		 
+		
 		game.schedule(3000, { => game.addVisual(self)})
 		game.schedule(4000, { => contador++ })
-//		self.image()
 		game.schedule(5000, { => contador++ })
-//		self.image()
 		game.schedule(6000, { => contador++ })
-//		self.image()
 		game.schedule(7000, { => contador++ })
-//		self.image()
 		game.schedule(8000, { => position=position.left(1) })
 		game.schedule(9000, { => position=position.left(1) })
 		game.schedule(10000, { => position=position.down(1) })
 		game.schedule(11000, { => position=position.down(1) })
 		
-		game.schedule(12000, { => game.onTick(350, "momiaStop", { => self.perseguir() })})  //estaba en 1000
-		
-		//self.perseguir()
+		game.schedule(12000, { => game.onTick(1000, "momiaStop", { => self.perseguir() })})  //estaba en 1000 //350 es bastante rapido
+	
 		
 	}
 	
-//			self.error("estas en el mismo piso!")
-
-
-
 	method verificarMismaPosicion() {
 		
 		if(self.position().x()==faraon.position().x() and self.position().y()==faraon.position().y()){
-			
-
 				game.removeTickEvent("momiaStop")
 				game.say(self, "te atrape2!")			 
 				game.schedule(2000, { => game.stop() })
-
-				
 			}
 		
 	}
 	
 	method perseguir(){
 		
-		
-		//te atrape mas rapido
-		
 		self.verificarMismaPosicion()
-		
 		
 //		si estoy en el mismo piso, me fijo si esta a mi izquierda o derecha y me muevo
 		if(self.position().y() == faraon.position().y()){
-			
-			
-			
-			if(self.position().x() > faraon.position().x()){
 				
+			if(self.position().x() > faraon.position().x()){
 				game.schedule(1000, { => position=position.left(1) })
 			}
 			else{
-				
 				game.schedule(1000, { => position=position.right(1) })
 			}
 		}
@@ -93,8 +74,6 @@ object momia {
 			position=position.down(2)
 		}
 		
-		
-			
 		}
 		
 		else { //faraon arriba de momia
@@ -104,7 +83,6 @@ object momia {
 				game.schedule(1000, { => position=position.left(1) })
 			}
 			else {
-			
 			
 			game.schedule(1000, { => position=position.right(1) })
 			}
