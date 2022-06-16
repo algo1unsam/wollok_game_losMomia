@@ -9,17 +9,10 @@ object faraon {
 	var property caminaDerecha
 	var property caminaIzquierda
 	
-	var property almacenar1 = 9999
-	var property almacenar2 = -9999
-	var property almacenoCuenta1
-	var property almacenoCuenta2
-	var property almacenoCuadro1 
-	var property almacenoCuadro2
-
-//		var property almaceno = []
+	var property seleccionado = null	
 
 
-method verificarMismaPosicion() {
+	method verificarMismaPosicion() {
 		
 		if(self.position().x()==momia.position().x() and self.position().y()==momia.position().y()){
 				game.removeVisual(self)
@@ -30,7 +23,7 @@ method verificarMismaPosicion() {
 	
 	
 	method image() {
-		if(caminaDerecha==1){return "faraon_camina_derecha_1.png"}
+	if(caminaDerecha==1){return "faraon_camina_derecha_1.png"}
 		if(caminaDerecha==2){return "faraon_camina_derecha_2.png"}
 		if(caminaDerecha==3){return "faraon_camina_derecha_3.png"}
 		if(caminaDerecha==4){return "faraon_camina_derecha_4.png"}
@@ -152,41 +145,26 @@ method verificarMismaPosicion() {
 	//CUENTAS
 	
 	method cuentasFaraon(){
-		if (  game.colliders(self).fold(false, {acum, element => cuentas.listaCuenta().contains(element) or acum })    ){
-			
-			self.almacenar1 ( game.colliders(self).last().total() )
-//			game.say(self, "nro1: almacenado:" + self.almacenar1() )   
-			almacenoCuenta1 = game.colliders(self).last()
-			almacenoCuadro1 = game.colliders(self).first()
-			
-//			almaceno.add(game.colliders(self).last())
-//			almaceno.add(game.colliders(self).first())
-			
-		}
-
-
-		if (  game.colliders(self).fold(false, {acum, element => cuentas.listaResultado().contains(element) or acum })    ){
-				self.almacenar2 ( game.colliders(self).last().total() )
-//				game.say(self, "nro2 almacenado:" + self.almacenar2()   )
-				almacenoCuenta2 = game.colliders(self).last()
-				almacenoCuadro2 = game.colliders(self).first()
-				
-//				almaceno.add(game.colliders(self).last())
-//				almaceno.add(game.colliders(self).first())
-				
+		
+		
+		if (  cuentas.hayEncuadrable(self.position())) {
+			const nuevaSeleccion = cuentas.encuadrable(self.position())
+			if( seleccionado != null) {
+				if(seleccionado.match(nuevaSeleccion)) {
+					puntosDelFaraon.sumar(seleccionado.total())
+					game.removeVisual(seleccionado)
+					game.removeVisual(nuevaSeleccion)
+					game.removeVisual(seleccionado.cuadro())
+					game.removeVisual(nuevaSeleccion.cuadro())
+					seleccionado = null
+				}
+				else {
+					seleccionado = nuevaSeleccion
+				}
 			}
-			
-
-		if ( self.almacenar1() == self.almacenar2() ){
-			puntosDelFaraon.sumar(almacenar2)
-			game.removeVisual(almacenoCuenta1)
-			game.removeVisual(almacenoCuenta2)
-			game.removeVisual(almacenoCuadro1)
-			game.removeVisual(almacenoCuadro2)
-//			almaceno.forEach({ cosas => game.removeVisual(cosas) })
-//			almaceno.clear()
-			
-//			game.say(self, "la cuenta es correcta!")
+			else {
+				seleccionado = nuevaSeleccion
+			}
 		}
 
 	}
