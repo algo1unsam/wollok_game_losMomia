@@ -8,8 +8,8 @@ import menu.*
 program momiaGame {
 	//configuraciones de pantalla
 	game.title("LA MOMIA POLIMORFICA")
-	game.height(10) //10 //15
-	game.width(19) //15 //25
+	game.height(10)
+	game.width(19)
 	
 	game.boardGround("PIRAMIDE.jpg")
 	

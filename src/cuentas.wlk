@@ -36,17 +36,17 @@ object cuentas {
 		listaCuadros.addAll(#{cuadro1,cuadro2,cuadro3,cuadro4,cuadro5,cuadro6,cuadro7,cuadro8,cuadro9,cuadro10,cuadro11,cuadro12})
 		listaCuadros.forEach({ cuadro => game.addVisual(cuadro)})
 		
-		const cuenta1 = new Cuenta(position = self.elegirCuadro().position() , nro1= (1..100).anyOne() , nro2= (1..100).anyOne())
+		const cuenta1 = new Suma(position = self.elegirCuadro().position() , nro1= (1..100).anyOne() , nro2= (1..100).anyOne())
 		const resultado1 = new Resultado(position = self.elegirCuadro().position()  , total = cuenta1.total()  )
-		const cuenta2 = new Cuenta(position = self.elegirCuadro().position()  , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+		const cuenta2 = new Suma(position = self.elegirCuadro().position()  , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
 		const resultado2 = new Resultado(position = self.elegirCuadro().position() , total = cuenta2.total() )
-		const cuenta3 = new Cuenta(position = self.elegirCuadro().position()  , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+		const cuenta3 = new Resta(position = self.elegirCuadro().position()  , nro1= (50..100).anyOne() , nro2= (1..50).anyOne() )
 		const resultado3 = new Resultado(position = self.elegirCuadro().position() , total = cuenta3.total() )
-		const cuenta4 = new Cuenta(position = self.elegirCuadro().position()  , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+		const cuenta4 = new Resta(position = self.elegirCuadro().position()  , nro1= (50..100).anyOne() , nro2= (1..50).anyOne() )
 		const resultado4 = new Resultado(position = self.elegirCuadro().position() , total = cuenta4.total() )
-		const cuenta5 = new Cuenta(position = self.elegirCuadro().position()  , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+		const cuenta5 = new Multiplicacion(position = self.elegirCuadro().position()  , nro1= (6..14).anyOne() , nro2= (3..16).anyOne() )
 		const resultado5 = new Resultado(position = self.elegirCuadro().position() , total = cuenta5.total() )
-		const cuenta6 = new Cuenta(position = self.elegirCuadro().position()  , nro1= (1..100).anyOne() , nro2= (1..100).anyOne() )
+		const cuenta6 = new Multiplicacion(position = self.elegirCuadro().position()  , nro1= (6..14).anyOne() , nro2= (3..16).anyOne() )
 		const resultado6 = new Resultado(position = self.elegirCuadro().position() , total = cuenta6.total() )
 		
 //	listaCuenta = [cuenta1,cuenta2,cuenta3,cuenta4,cuenta5,cuenta6]
@@ -74,11 +74,26 @@ class Cuenta {
 	var property nro1
 	var property nro2
 
-	var property total = nro1 + nro2
-
 	var property position
 
-	method text(){return ''+nro1+ ' + ' +nro2+''} 
+	method total()
+	
+	method text() 
+}
+
+class Suma inherits Cuenta{
+	override method total() = nro1 + nro2
+	override method text(){return ''+nro1+ ' + ' +nro2+''} 
+}
+
+class Resta inherits Cuenta{
+	override method total() = nro1 - nro2
+	override method text(){return ''+nro1+ ' - ' +nro2+''} 
+}
+
+class Multiplicacion inherits Cuenta{
+	override method total() = nro1 * nro2
+	override method text(){return ''+nro1+ ' x ' +nro2+''} 
 }
 
 class Resultado {
