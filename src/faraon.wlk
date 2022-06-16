@@ -11,9 +11,11 @@ object faraon {
 	
 	var property almacenar1 = 9999
 	var property almacenar2 = -9999
-	var property almacenoTemp1
-	var property almacenoTemp2 
-	
+	var property almacenoCuenta1
+	var property almacenoCuenta2
+	var property almacenoCuadro1 
+	var property almacenoCuadro2 
+
 
 method verificarMismaPosicion() {
 		
@@ -184,24 +186,29 @@ method verificarMismaPosicion() {
 	 
 	
 	method cuentasFaraon(){
-		if (  game.colliders(self).fold(false, {acum, element => cuenta.listaCuenta().contains(element) or acum })    ){
+		if (  game.colliders(self).fold(false, {acum, element => cuentas.listaCuenta().contains(element) or acum })    ){
 			
-			self.almacenar1 ( game.colliders(self).first().total() )
-			game.say(self, "nro1: almacenado " ) // + self.almacenar1()
-			almacenoTemp1 = game.colliders(self).first()
+			self.almacenar1 ( game.colliders(self).last().total() )
+			game.say(self, "nro1: almacenado:" + self.almacenar1() )   
+			almacenoCuenta1 = game.colliders(self).last()
+			almacenoCuadro1 = game.colliders(self).first()
 		}
 
 
-		if (  game.colliders(self).fold(false, {acum, element => cuenta.listaResultado().contains(element) or acum })    ){
-				self.almacenar2 ( game.colliders(self).first().total() )
-				game.say(self, "nro2: almacenado"  ) //+ self.almacenar2()
-				almacenoTemp2 = game.colliders(self).first()
+		if (  game.colliders(self).fold(false, {acum, element => cuentas.listaResultado().contains(element) or acum })    ){
+				self.almacenar2 ( game.colliders(self).last().total() )
+				game.say(self, "nro2 almacenado:" + self.almacenar2()   )
+				almacenoCuenta2 = game.colliders(self).last()
+				almacenoCuadro2 = game.colliders(self).first()
 			}
 			
 
 				if ( self.almacenar1() == self.almacenar2() ){
-			game.removeVisual( almacenoTemp1 )
-			game.removeVisual( almacenoTemp2 )
+			game.removeVisual(almacenoCuenta1)
+			game.removeVisual(almacenoCuenta2)
+			game.removeVisual(almacenoCuadro1)
+			game.removeVisual(almacenoCuadro2)
+			
 			game.say(self, "la cuenta es correcta!")
 		}
 

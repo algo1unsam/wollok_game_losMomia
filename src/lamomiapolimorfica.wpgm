@@ -19,17 +19,13 @@ program momiaGame {
 	
 	//escaleras
 	escalera.mostrar()
-
 	
 	//escalera abajo
 	escaleraAbajo.mostrar()
 	
 // 	CUENTAS
- 	cuadros.mostrar()
 	cuentas.mostrar()
- 	//textos.mostrar()
 
- 
  	//personaje principal 
 	game.addVisual(faraon) //img en 250px
 	
@@ -39,8 +35,6 @@ program momiaGame {
 	keyboard.right().onPressDo(  { faraon.moverDerecha() } )
 	keyboard.up().onPressDo(  { faraon.moverArriba() } )
 	keyboard.down().onPressDo(  { faraon.moverAbajo() } )
-	
-	
 
 	keyboard.space().onPressDo(  { faraon.cuentasFaraon() } )
 
