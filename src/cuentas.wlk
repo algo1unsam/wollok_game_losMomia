@@ -88,6 +88,12 @@ class Encuadrable {
 	method match(encuadrable) {
 		return self.total() == encuadrable.total()
 	}
+	
+	method borrarPantalla(encuadrable){
+		game.removeVisual(encuadrable)
+		game.removeVisual(encuadrable.cuadro())
+	}
+	
 }
 
 //CUENTA

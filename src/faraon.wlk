@@ -6,16 +6,16 @@ import momia.*
 object faraon {
 
 	var property position=game.at(10, 4)
-	var property caminaDerecha
-	var property caminaIzquierda
+	var property caminaDerecha = 1
+	var property caminaIzquierda = 1
 	
 	var property seleccionado = null	
 
 
 	method verificarMismaPosicion() {
 		
-		if(self.position().x()==momia.position().x() and self.position().y()==momia.position().y()){
-				game.removeVisual(self)
+		if(self.position() == momia.position()){
+				
 				game.say(self, "me mato la momia!")			 
 				game.schedule(2000, { => game.stop() })
 			}
@@ -111,18 +111,13 @@ object faraon {
  		self.verificarMismaPosicion()
  		caminaDerecha=0
 		caminaIzquierda=0
-// otra forma para que suba en todas las escaleras(supongo que colisiona solo con una escalera)		
-//		if (escalera.listaEscalera().contains(game.colliders(self).get(0))){
-//			position=position.up(2)
-//		}
 
 		if (  game.colliders(self).fold(false, {acum, element => escalera.listaEscalera().contains(element) or acum })    ){
 			position=position.up(2)
 		}
 		else{		
-//		caminaDerecha=0
-//		caminaIzquierda=0
-		self.error("para subir necesito una escalera")
+
+//		self.error("para subir necesito una escalera")
 		}	
 	}
 	
@@ -135,9 +130,9 @@ object faraon {
 			position=position.down(2)
 		}
 		else{			
-//		caminaDerecha=0
-//		caminaIzquierda=0
-		self.error("para bajar necesito una escalera")
+
+
+//		self.error("para bajar necesito una escalera")
 		}
 
 	}
@@ -152,10 +147,8 @@ object faraon {
 			if( seleccionado != null) {
 				if(seleccionado.match(nuevaSeleccion)) {
 					puntosDelFaraon.sumar(seleccionado.total())
-					game.removeVisual(seleccionado)
-					game.removeVisual(nuevaSeleccion)
-					game.removeVisual(seleccionado.cuadro())
-					game.removeVisual(nuevaSeleccion.cuadro())
+					nuevaSeleccion.borrarPantalla(nuevaSeleccion)
+					seleccionado.borrarPantalla(seleccionado)
 					seleccionado = null
 				}
 				else {

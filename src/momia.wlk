@@ -5,7 +5,7 @@ import objetos.*
 object momia {
 
 	var property position = game.at(9, 8)
-	var property contador=0
+	var property contador = 0
 
 	method image() {
 		if (contador==0) {return "momia_tumba_abierta_1.png"}
@@ -15,8 +15,6 @@ object momia {
 	}
 
 	method start() {
-		
-		 
 		
 		game.schedule(3000, { => game.addVisual(self)})
 		game.schedule(4000, { => contador++ })
@@ -30,14 +28,13 @@ object momia {
 		
 		game.schedule(12000, { => game.onTick(1000, "momiaStop", { => self.perseguir() })})  //estaba en 1000 //350 es bastante rapido
 	
-		
 	}
 	
 	method verificarMismaPosicion() {
 		
-		if(self.position().x()==faraon.position().x() and self.position().y()==faraon.position().y()){
+		if( self.position() == faraon.position() ){
 				game.removeTickEvent("momiaStop")
-				game.say(self, "te atrape2!")			 
+				game.say(self, "te atrape!")			 
 				game.schedule(2000, { => game.stop() })
 			}
 		
@@ -119,11 +116,6 @@ object momia {
 			else {
 				
 				self.verificarMismaPosicion()
-				
-				game.removeTickEvent("momiaStop")
-				game.say(self, "te atrape!")			 
-				game.schedule(2000, { => game.stop() })
-				
 			
 			}
 				

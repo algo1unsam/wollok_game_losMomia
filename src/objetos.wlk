@@ -3,6 +3,7 @@ import faraon.*
 
 
 //VENTANAS
+
 object ventana {
 
 	const listaVentana = []
@@ -30,10 +31,8 @@ class Ventana {
 
 	method image() = "ventana.png"
 }
-//VENTANAS
 
-
-//ESCALERAS
+//ESCALERA
 
 object escalera {
 
@@ -65,12 +64,9 @@ class Escalera {
 }
 
 
-//ESCALERAS
-
 //ESCALERAS ABAJO
 
 object escaleraAbajo {
-
 	
 	const property listaEscaleraAbajo = []
 
@@ -100,4 +96,3 @@ class EscaleraAbajo {
 }
 
 
-//ESCALERAS ABAJO
