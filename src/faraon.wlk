@@ -73,8 +73,27 @@ object faraon {
 		return game.colliders(self).fold(false, { acum , element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })
 	}
 
+	method validaHayObjeto() {
+		if (self.position() == cruz.position()) {
+			game.removeVisual(cruz)
+			cruz.cambiarPosicion()
+			momia.reiniciar()
+		}
+		if (self.position() == campana.position()) {
+			game.removeVisual(campana)
+			campana.cambiarPosicion()
+			momia.cambiarVelocidad(500)
+		}
+		if (self.position() == reloj.position()) {
+			game.removeVisual(reloj)
+			reloj.cambiarPosicion()
+			momia.cambiarVelocidad(2000)
+		}
+	}
+
 	method mover(direccion) {
 		direccion.validarMover(self)
+		self.validaHayObjeto()
 		position = direccion.siguiente(position)
 		self.paso(direccion)
 	}
@@ -122,9 +141,7 @@ object faraon {
 	}
 
 	method verificaGanar() {
-		game.say(self, "se ejecuta verificar!")
 		if (cuentas.encuadrables().isEmpty()) {
-			game.say(self, "entro en el if!")
 			ganar.ejecutar()
 		}
 	}

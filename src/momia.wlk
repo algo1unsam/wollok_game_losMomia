@@ -7,6 +7,7 @@ object momia {
 
 	var property position = game.at(9, 8)
 	var property contador = 0
+	var property velocidad = 1000
 
 	method image() {
 		if (contador == 0) {
@@ -30,7 +31,19 @@ object momia {
 		game.schedule(9000, { => position = position.left(1)})
 		game.schedule(10000, { => position = position.down(1)})
 		game.schedule(11000, { => position = position.down(1)})
-		game.schedule(12000, { => game.onTick(1000, "momiaStop", { => self.perseguir()})}) 
+		game.schedule(12000, { => game.onTick(velocidad, "momiaStop", { => self.perseguir()})})
+	}
+
+	method reiniciar() {
+		game.removeTickEvent("momiaStop")
+		game.removeVisual(self)
+		contador = 0
+		position = game.at(9, 8)
+		self.start()
+	}
+
+	method cambiarVelocidad(_velocidad) {
+		velocidad = _velocidad
 	}
 
 	method verificarMismaPosicion() {
@@ -59,7 +72,7 @@ object momia {
 		if (game.colliders(self).fold(false, { acum , element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })) {
 			game.removeTickEvent("momiaStop")
 			position = position.down(2)
-			game.onTick(1000, "momiaStop", { => self.perseguir()}) 
+			game.onTick(velocidad, "momiaStop", { => self.perseguir()})
 		}
 	}
 
@@ -67,8 +80,16 @@ object momia {
 		if (game.colliders(self).fold(false, { acum , element => escalera.listaEscalera().contains(element) or acum })) {
 			game.removeTickEvent("momiaStop")
 			position = position.up(2)
-			game.onTick(1000, "momiaStop", { => self.perseguir()}) 
+			game.onTick(velocidad, "momiaStop", { => self.perseguir()})
 		}
+	}
+
+	method moverDerecha() {
+		game.schedule(velocidad, { => position = position.right(1)})
+	}
+
+	method moverIzquierda() {
+		game.schedule(velocidad, { => position = position.left(1)})
 	}
 
 	method perseguir() {
@@ -76,25 +97,25 @@ object momia {
 //		si estoy en el mismo piso, me fijo si esta a mi izquierda o derecha y me muevo
 		if (self.position().y() == faraon.position().y()) {
 			if (self.position().x() > faraon.position().x()) {
-				game.schedule(1000, { => position = position.left(1)})
+				self.moverIzquierda()
 			} else {
-				game.schedule(1000, { => position = position.right(1)})
+				self.moverDerecha()
 			}
 		} // momia arriba del faraon
 		else if (self.position().y() > faraon.position().y()) {
 			if (self.position().x() > self.unaEscaleraAbajoMismoPiso().position().x()) {
-				game.schedule(1000, { => position = position.left(1)})
+				self.moverIzquierda()
 				self.bajarEscalera()
 			} else {
-				game.schedule(1000, { => position = position.right(1)})
+				self.moverDerecha()
 				self.bajarEscalera()
 			}
 		} else { // faraon arriba de la momia
 			if (self.position().x() > self.unaEscaleraArribaMismoPiso().position().x()) {
-				game.schedule(1000, { => position = position.left(1)})
+				self.moverIzquierda()
 				self.subirEscalera()
 			} else {
-				game.schedule(1000, { => position = position.right(1)})
+				self.moverDerecha()
 				self.subirEscalera()
 			}
 		}

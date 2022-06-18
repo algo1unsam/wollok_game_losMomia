@@ -40,6 +40,9 @@ object juego {
 		keyboard.up().onPressDo({ faraon.mover(arriba)})
 		keyboard.down().onPressDo({ faraon.mover(abajo)})
 		keyboard.space().onPressDo({ faraon.cuentasFaraon()})
+		cruz.aparece()
+		campana.aparece()
+		reloj.aparece()
 	}
 
 }

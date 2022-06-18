@@ -1,6 +1,55 @@
 import wollok.game.*
 import faraon.*
 
+// OBJETOS
+object cruz {
+
+	var property position = game.at(1, 0)
+
+	method image() = "cruz.png"
+
+	method cambiarPosicion() {
+		position = game.at(20, 20)
+	}
+
+	method aparece() {
+		game.addVisual(self)
+	}
+
+}
+
+object campana {
+
+	var property position = game.at(4, 2)
+
+	method image() = "campana.png"
+
+	method cambiarPosicion() {
+		position = game.at(20, 20)
+	}
+
+	method aparece() {
+		game.addVisual(self)
+	}
+
+}
+
+object reloj {
+
+	var property position = game.at(1, 4)
+
+	method image() = "reloj.png"
+
+	method cambiarPosicion() {
+		position = game.at(20, 20)
+	}
+
+	method aparece() {
+		game.addVisual(self)
+	}
+
+}
+
 //VENTANAS
 object ventana {
 
