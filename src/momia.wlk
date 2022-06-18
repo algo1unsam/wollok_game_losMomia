@@ -41,6 +41,30 @@ object momia {
 		
 	}
 	
+	method distancia(una){
+		return if (self.position().x() > una.position().x()){
+			self.position().x() - una.position().x()
+		}  else{
+			una.position().x()  - self.position().x()
+		}
+	}
+	
+	method unaEscaleraAbajoMismoPiso(){
+		return escaleraAbajo.listaEscaleraAbajo().filter({ unaEscalera => unaEscalera.position().y() == self.position().y() }).min({una => self.distancia(una)})
+	}
+
+	method unaEscaleraArribaMismoPiso(){
+		return escalera.listaEscalera().filter({ unaEscalera => unaEscalera.position().y() == self.position().y() }).min({una => self.distancia(una)})
+		
+	}
+	
+	method bajarEscalera(){
+		if (  game.colliders(self).fold(false, {acum, element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })    ){
+					
+			position=position.down(2)
+		}
+	}
+	
 	method perseguir(){
 		
 		self.verificarMismaPosicion()
@@ -55,30 +79,30 @@ object momia {
 				game.schedule(1000, { => position=position.right(1) })
 			}
 		}
-		else if (self.position().y() > faraon.position().y()) {
-			
 //			si la momia esta encima del faraon
-			if ( self.position().x() > faraon.position().x() ){   
-				
+		else if (self.position().y() > faraon.position().y()) {
+
+//BUSCAR ALGUNA ESCALERA CON EL MISMO EJE Y (BUSCAR EN LISTA ESCALERAS ALGUNA)
+						
+			if ( self.position().x() > self.unaEscaleraAbajoMismoPiso().position().x() ){  
 				game.schedule(1000, { => position=position.left(1) })
+				self.bajarEscalera()
 			}
 			else {
-				
 			game.schedule(1000, { => position=position.right(1) })
+			self.bajarEscalera()
 			}
-//BUSCAR ALGUNA ESCALERA CON EL MISMO EJE Y (BUSCAR EN LISTA ESCALERAS ALGUNA)
  
 // ESTO BAJA CUANDO LA ENCUENTRA
-			if (  game.colliders(self).fold(false, {acum, element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })    ){
-					
-			position=position.down(2)
-		}
+
 		
 		}
 		
 		else { //faraon arriba de momia
 			
-			if ( self.position().x() > faraon.position().x() ){
+			 
+			
+			if ( self.position().x() > self.unaEscaleraArribaMismoPiso().position().x() ){   
 				
 				game.schedule(1000, { => position=position.left(1) })
 			}
@@ -94,33 +118,33 @@ object momia {
 			
 		}
 		
-		if(self.position().x()==faraon.position().x()){
-			
-			
-			if(self.position().y()!=faraon.position().y()) {
-				
-			 game.removeVisual(self)
-			 if(self.position().y()>faraon.position().y()) {
-			 	
-			 	position=position.down(2)
-			 }
-			 else{
-			 	
-			 	position=position.up(2)
-			 }
-			 
-			 
-			 game.schedule(500, { => game.addVisual(self) })
-			
-			}
-			
-			else {
-				
-				self.verificarMismaPosicion()
-			
-			}
-				
-			}
+//		if(self.position().x()==faraon.position().x()){
+//			
+//			
+//			if(self.position().y()!=faraon.position().y()) {
+//				
+//			 game.removeVisual(self)
+//			 if(self.position().y()>faraon.position().y()) {
+//			 	
+//			 	position=position.down(2)
+//			 }
+//			 else{
+//			 	
+//			 	position=position.up(2)
+//			 }
+//			 
+//			 
+//			 game.schedule(500, { => game.addVisual(self) })
+//			
+//			}
+//			
+//			else {
+//				
+//				self.verificarMismaPosicion()
+//			
+//			}
+//				
+//			}
 			
 		}
 		

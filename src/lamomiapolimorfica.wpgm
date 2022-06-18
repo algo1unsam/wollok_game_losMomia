@@ -4,6 +4,7 @@ import momia.*
 import objetos.*
 import cuentas.*
 import menu.*
+import extras.*
 
 program momiaGame {
 	//configuraciones de pantalla
