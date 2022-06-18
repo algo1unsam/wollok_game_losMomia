@@ -7,17 +7,16 @@ import menu.*
 import extras.*
 
 program momiaGame {
-	//configuraciones de pantalla
+	// configuraciones de pantalla
 	game.title("LA MOMIA POLIMORFICA")
 	game.height(10)
-	game.width(19)  
-	
+	game.width(19)
 	game.boardGround("PIRAMIDE.jpg")
 	
 	menu.ejecutar()
-	keyboard.enter().onPressDo(  { juego.empezar() } )
 	
-	//empieza
+	keyboard.enter().onPressDo({ juego.empezar() })
+	
+		// empieza
 	game.start()
-	
 }

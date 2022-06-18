@@ -1,9 +1,7 @@
 import wollok.game.*
 import faraon.*
 
-
 //VENTANAS
-
 object ventana {
 
 	const listaVentana = []
@@ -30,10 +28,10 @@ class Ventana {
 	var property position
 
 	method image() = "ventana.png"
+
 }
 
 //ESCALERA
-
 object escalera {
 
 	const property listaEscalera = []
@@ -47,7 +45,7 @@ object escalera {
 		self.crear(11, 4)
 		self.crear(3, 2)
 		self.crear(15, 2)
-		}
+	}
 
 	method mostrar() {
 		self.cargar()
@@ -61,13 +59,12 @@ class Escalera {
 	var property position
 
 	method image() = "escalera.png"
+
 }
 
-
 //ESCALERAS ABAJO
-
 object escaleraAbajo {
-	
+
 	const property listaEscaleraAbajo = []
 
 	method crear(x, y) {
@@ -93,6 +90,6 @@ class EscaleraAbajo {
 	var property position
 
 	method image() = "escalera_abajo.png"
-}
 
+}
 

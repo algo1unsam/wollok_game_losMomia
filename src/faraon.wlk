@@ -4,72 +4,104 @@ import cuentas.*
 import momia.*
 import extras.*
 
+object ganar {
+	
+	method image() = "GANAR.jpg"
+
+	method position() = game.origin()
+	
+	method ejecutar() {
+		game.removeTickEvent("momiaStop")
+		game.addVisual(self)
+		game.addVisual(mostrarPuntajeFinal)
+		game.schedule(8000, { => game.stop()})
+	} 
+	
+}
+
+object perder {
+	
+	method image() = "PERDER.jpg"
+
+	method position() = game.origin() // game.origin()
+
+	method ejecutar() {
+		game.removeTickEvent("momiaStop")
+		game.addVisual(self)
+		game.addVisual(mostrarPuntajeFinal)
+		game.schedule(8000, { => game.stop()})
+	} 
+
+	
+}
+
+
+
+object mostrarPuntajeFinal{
+		method position() = game.center() // game.origin()
+		
+		method text() {
+		return 'PUNTAJE TOTAL OBTENIDO:' + puntosDelFaraon.puntosAcumulados() + ''
+	}
+}
+
 object faraon {
 
-	var property position=game.at(10, 4)
+	var property position = game.at(10, 4)
 	var property caminaDerecha = 0
 	var property caminaIzquierda = 0
-	
-	var property seleccionado = null	
-
+	var property seleccionado = null
 
 	method verificarMismaPosicion() {
-		
-		if(self.position() == momia.position()){
-				
-				game.say(self, "me mato la momia!")			 
-				game.schedule(2000, { => game.stop() })
-			}
+		if (self.position() == momia.position()) {
+			perder.ejecutar()
+		}
 	}
-	
 
 	method image() {
-	
-	if(caminaDerecha>0){return "faraon_camina_derecha_"+caminaDerecha+".png"}
-	else if(caminaIzquierda>0){return "faraon_camina_izquierda_"+caminaIzquierda+".png"}
-	else return "faraon_quieto_adelante.png"
-	
+		if (caminaDerecha > 0) {
+			return "faraon_camina_derecha_" + caminaDerecha + ".png"
+		} else if (caminaIzquierda > 0) {
+			return "faraon_camina_izquierda_" + caminaIzquierda + ".png"
+		} else return "faraon_quieto_adelante.png"
 	}
-	
+
 	method mover(direccion) {
-		
 		self.verificarMismaPosicion()
 		self.validarPosicion()
-		position=direccion.siguiente(position)
+		position = direccion.siguiente(position)
 		self.paso(direccion)
-		
 	}
-	
-	method paso(direccion){
-		
-		if(direccion.esIzquierda()){
-			caminaDerecha=0
-			if(caminaIzquierda<5){caminaIzquierda++}
-			else {caminaIzquierda=1}
-			
+
+	method paso(direccion) {
+		if (direccion.esIzquierda()) {
+			caminaDerecha = 0
+			if (caminaIzquierda < 5) {
+				caminaIzquierda++
+			} else {
+				caminaIzquierda = 1
+			}
+		} else {
+			caminaIzquierda = 0
+			if (caminaDerecha < 5) {
+				caminaDerecha++
+			} else {
+				caminaDerecha = 1
+			}
 		}
-		else{
-			caminaIzquierda=0
-			if(caminaDerecha<5){caminaDerecha++}
-			else {caminaDerecha=1}
-		
-		}
-		
 	}
-	
-	method validarPosicion(){
-		
-		if(self.position().x()<1){
-			caminaIzquierda=0
+
+	method validarPosicion() {
+		if (self.position().x() < 1) {
+			caminaIzquierda = 0
 			self.error("no puedo moverme mas a la izquierda")
 		}
-		if((self.position().x()>17)){
-			caminaDerecha=0
+		if ((self.position().x() > 17)) {
+			caminaDerecha = 0
 			self.error("no puedo moverme mas a la derecha")
 		}
-
 	}
-	
+
 //	method moverIzquierda() {
 //			self.verificarMismaPosicion()
 //		
@@ -139,76 +171,74 @@ object faraon {
 //					}
 //		}
 //	}
-	
-	
 	method moverArriba() {
- 		self.verificarMismaPosicion()
- 		caminaDerecha=0
-		caminaIzquierda=0
-
-		if (  game.colliders(self).fold(false, {acum, element => escalera.listaEscalera().contains(element) or acum })    ){
-			position=position.up(2)
-		}
-		else{		
-
+		self.verificarMismaPosicion()
+		caminaDerecha = 0
+		caminaIzquierda = 0
+		if (game.colliders(self).fold(false, { acum , element => escalera.listaEscalera().contains(element) or acum })) {
+			position = position.up(2)
+		} else {
 //		self.error("para subir necesito una escalera")
-		}	
+		}
 	}
-	
+
 	method moverAbajo() {
 		self.verificarMismaPosicion()
-		caminaDerecha=0
-		caminaIzquierda=0
+		caminaDerecha = 0
+		caminaIzquierda = 0
 		self.image()
-		if (  game.colliders(self).fold(false, {acum, element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })    ){
-			position=position.down(2)
-		}
-		else{			
-
-
+		if (game.colliders(self).fold(false, { acum , element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })) {
+			position = position.down(2)
+		} else {
 //		self.error("para bajar necesito una escalera")
 		}
-
 	}
-	
-	//CUENTAS
-	
-	method cuentasFaraon(){
-		
-		
-		if (  cuentas.hayEncuadrable(self.position())) {
+
+	// CUENTAS
+	method cuentasFaraon() {
+			
+		if (cuentas.hayEncuadrable(self.position())) {
 			const nuevaSeleccion = cuentas.encuadrable(self.position())
-			if( seleccionado != null) {
-				if(seleccionado.match(nuevaSeleccion)) {
+			if (seleccionado != null) {
+				if (seleccionado.match(nuevaSeleccion)) {
+					
 					puntosDelFaraon.sumar(seleccionado.total())
 					nuevaSeleccion.borrarPantalla(nuevaSeleccion)
 					seleccionado.borrarPantalla(seleccionado)
 					seleccionado = null
-				}
-				else {
+					self.verificaGanar()
+				} else {
 					seleccionado = nuevaSeleccion
 				}
-			}
-			else {
+			} else {
 				seleccionado = nuevaSeleccion
 			}
 		}
-
 	}
-	
-	
+
+	method verificaGanar(){
+			game.say(self, "se ejecuta verificar!")
+		if (cuentas.encuadrables().isEmpty() ){
+			game.say(self, "entro en el if!")
+			ganar.ejecutar()
+		}
+	}
+
+
 }
 
-object puntosDelFaraon{
+object puntosDelFaraon {
+
 	var property puntosAcumulados = 0
+	var property position = game.at(15, 8)
 
-	var property position=game.at(15, 8)
+	method text() {
+		return 'PUNTAJE: ' + self.puntosAcumulados()
+	}
 
-	method text(){return 'PUNTAJE: '+ self.puntosAcumulados()}
-	
-	method sumar(valor){
+	method sumar(valor) {
 		puntosAcumulados += valor
 	}
-	
+
 }
-	
+
