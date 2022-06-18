@@ -37,8 +37,8 @@ object juego {
 		game.addVisual(faraon) // img en 250px
 		keyboard.left().onPressDo({ faraon.mover(izquierda)})
 		keyboard.right().onPressDo({ faraon.mover(derecha)})
-		keyboard.up().onPressDo({ faraon.moverArriba()})
-		keyboard.down().onPressDo({ faraon.moverAbajo()})
+		keyboard.up().onPressDo({ faraon.mover(arriba)})
+		keyboard.down().onPressDo({ faraon.mover(abajo)})
 		keyboard.space().onPressDo({ faraon.cuentasFaraon()})
 	}
 
