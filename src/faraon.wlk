@@ -67,8 +67,8 @@ object faraon {
 	}
 
 	method mover(direccion) {
-		self.verificarMismaPosicion()
-		self.validarPosicion()
+		
+		direccion.validarMover(self)
 		position = direccion.siguiente(position)
 		self.paso(direccion)
 	}
@@ -91,86 +91,6 @@ object faraon {
 		}
 	}
 
-	method validarPosicion() {
-		if (self.position().x() < 1) {
-			caminaIzquierda = 0
-			self.error("no puedo moverme mas a la izquierda")
-		}
-		if ((self.position().x() > 17)) {
-			caminaDerecha = 0
-			self.error("no puedo moverme mas a la derecha")
-		}
-	}
-
-//	method moverIzquierda() {
-//			self.verificarMismaPosicion()
-//		
-//		caminaDerecha=0
-//		
-//		if(self.position().x()<1)  {
-//			caminaIzquierda=0
-//			//self.error("no puedo moverme más a la izquierda")
-//		}
-//		else {if(caminaIzquierda==1){
-//						caminaIzquierda++
-//						position=position.left(1)
-//					}
-//					
-//					else if(caminaIzquierda==2){
-//						caminaIzquierda++
-//						position=position.left(1)
-//					}
-//					
-//					else if(caminaIzquierda==3){
-//						caminaIzquierda++
-//						position=position.left(1)
-//					}
-//					
-//					else if(caminaIzquierda==4){
-//						caminaIzquierda++
-//						position=position.left(1)
-//					}
-//			
-//					else {
-//						caminaIzquierda=1
-//						position=position.left(1)
-//					}}
-//	}
-//	
-//	method moverDerecha() {
-//		self.verificarMismaPosicion()
-//		caminaIzquierda=0
-//		if(self.position().x()>17)  {
-//			caminaDerecha=0
-//			//self.error("no puedo moverme más a la derecha")
-//		}
-//		else {
-//					if(caminaDerecha==1){
-//						caminaDerecha++
-//						position=position.right(1)
-//					}
-//					
-//					else if(caminaDerecha==2){
-//						caminaDerecha++
-//						position=position.right(1)
-//					}
-//					
-//					else if(caminaDerecha==3){
-//						caminaDerecha++
-//						position=position.right(1)
-//					}
-//					
-//					else if(caminaDerecha==4){
-//						caminaDerecha++
-//						position=position.right(1)
-//					}
-//			
-//					else {
-//						caminaDerecha=1
-//						position=position.right(1)
-//					}
-//		}
-//	}
 	method moverArriba() {
 		self.verificarMismaPosicion()
 		caminaDerecha = 0
@@ -178,7 +98,7 @@ object faraon {
 		if (game.colliders(self).fold(false, { acum , element => escalera.listaEscalera().contains(element) or acum })) {
 			position = position.up(2)
 		} else {
-//		self.error("para subir necesito una escalera")
+		self.error("para subir necesito una escalera")
 		}
 	}
 
@@ -190,7 +110,7 @@ object faraon {
 		if (game.colliders(self).fold(false, { acum , element => escaleraAbajo.listaEscaleraAbajo().contains(element) or acum })) {
 			position = position.down(2)
 		} else {
-//		self.error("para bajar necesito una escalera")
+		self.error("para bajar necesito una escalera")
 		}
 	}
 

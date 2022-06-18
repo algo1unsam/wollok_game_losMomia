@@ -8,6 +8,15 @@ object izquierda {
 	}
 
 	method esIzquierda() = true
+	
+	method validarMover(personaje){
+		
+		if (personaje.position().x() < 1) {
+			personaje.caminaIzquierda(0)
+			personaje.error("no puedo moverme mas a la izquierda")
+		}
+		
+	}
 
 }
 
@@ -18,6 +27,15 @@ object derecha {
 	}
 
 	method esIzquierda() = false
+	
+	method validarMover(personaje){
+		
+		if (personaje.position().x() > 17) {
+			personaje.caminaDerecha(0)
+			personaje.error("no puedo moverme mas a la derecha")
+		}
+		
+	}
 
 }
 
