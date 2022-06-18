@@ -1,6 +1,7 @@
 import wollok.game.*
 import faraon.*
 import objetos.*
+import extras.*
 
 object momia {
 

@@ -3,6 +3,7 @@ import faraon.*
 import momia.*
 import objetos.*
 import cuentas.*
+import extras.*
 
 object menu {
 	
@@ -40,8 +41,8 @@ object juego {
  	//personaje principal 
 	game.addVisual(faraon) //img en 250px
 
-	keyboard.left().onPressDo(  { faraon.moverIzquierda() } )
-	keyboard.right().onPressDo(  { faraon.moverDerecha() } )
+	keyboard.left().onPressDo(  { faraon.mover(izquierda) } )
+	keyboard.right().onPressDo(  { faraon.mover(derecha) } )
 	keyboard.up().onPressDo(  { faraon.moverArriba() } )
 	keyboard.down().onPressDo(  { faraon.moverAbajo() } )
 
