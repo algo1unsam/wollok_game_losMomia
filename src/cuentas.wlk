@@ -43,13 +43,13 @@ object cuentas {
 	}
 	
 	method suma() {
-		return new Suma(cuadro = self.elegirCuadro() , nro1= (1..100).anyOne() , nro2= (1..100).anyOne())
+		return new Suma(cuadro = self.elegirCuadro() , nro1= self.generarNumero1a100() , nro2= self.generarNumero1a100())
 	}
 	method resta() {
-		return new Resta(cuadro = self.elegirCuadro()  , nro1= (50..100).anyOne() , nro2= (1..50).anyOne() )	
+		return new Resta(cuadro = self.elegirCuadro()  , nro1= self.generarNumero50a100() , nro2= self.generarNumero1a50() )	
 	}
 	method multiplicacion() {
-		return new Multiplicacion(cuadro = self.elegirCuadro()  , nro1= (6..14).anyOne() , nro2= (3..16).anyOne() )
+		return new Multiplicacion(cuadro = self.elegirCuadro()  , nro1= self.generarNumero6a14() , nro2= self.generarNumero3a16() )
 	}
 
 	method elegirCuadro(){
@@ -66,11 +66,11 @@ object cuentas {
 		return encuadrables.find({encuadrable => encuadrable.position() == position})			
 	}
 	
-//	method generarNumero1a100(){return (1..100).anyOne()}
-//	method generarNumero50a100(){return (50..100).anyOne()}
-//	method generarNumero1a50(){return (1..50).anyOne()}
-//	method generarNumero6a14(){return (6..14).anyOne()}
-//	method generarNumero3a16(){return (3..50).anyOne()}
+	method generarNumero1a100(){return (1..100).anyOne()}
+	method generarNumero50a100(){return (50..100).anyOne()}
+	method generarNumero1a50(){return (1..50).anyOne()}
+	method generarNumero6a14(){return (6..14).anyOne()}
+	method generarNumero3a16(){return (3..50).anyOne()}
 
 }
 
