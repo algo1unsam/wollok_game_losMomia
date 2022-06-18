@@ -33,6 +33,8 @@ object faraon {
 	
 	method mover(direccion) {
 		
+		self.verificarMismaPosicion()
+		self.validarPosicion()
 		position=direccion.siguiente(position)
 		self.paso(direccion)
 		
@@ -53,6 +55,19 @@ object faraon {
 		
 		}
 		
+	}
+	
+	method validarPosicion(){
+		
+		if(self.position().x()<1){
+			caminaIzquierda=0
+			self.error("no puedo moverme mas a la izquierda")
+		}
+		if((self.position().x()>17)){
+			caminaDerecha=0
+			self.error("no puedo moverme mas a la derecha")
+		}
+
 	}
 	
 //	method moverIzquierda() {
