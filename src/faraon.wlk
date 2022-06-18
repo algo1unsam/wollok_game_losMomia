@@ -119,7 +119,7 @@ object faraon {
 			
 		if (cuentas.hayEncuadrable(self.position())) {
 			const nuevaSeleccion = cuentas.encuadrable(self.position())
-			if (seleccionado != null) {
+			if (seleccionado != null and seleccionado.position() != nuevaSeleccion.position()) {
 				if (seleccionado.match(nuevaSeleccion)) {
 					
 					puntosDelFaraon.sumar(seleccionado.total())
