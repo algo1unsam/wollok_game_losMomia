@@ -6,12 +6,12 @@ import extras.*
 
 object ganar {
 
-	method image() = "GANAR.jpg"
+	method image() = "GANAR.png"
 
 	method position() = game.origin()
 
 	method ejecutar() {
-		game.removeTickEvent("momiaStop")
+//		game.removeTickEvent("momiaStop")
 		game.addVisual(self)
 		game.addVisual(mostrarPuntajeFinal)
 		game.schedule(8000, { => game.stop()})
@@ -21,7 +21,7 @@ object ganar {
 
 object perder {
 
-	method image() = "PERDER.jpg"
+	method image() = "PERDER.png"
 
 	method position() = game.origin() // game.origin()
 
@@ -74,9 +74,9 @@ object faraon {
 	}
 
 	method validaHayObjeto() {
-		if (self.position() == cruz.position()) {
-			game.removeVisual(cruz)
-			cruz.cambiarPosicion()
+		if (self.position() == tumba.position()) {
+			game.removeVisual(tumba)
+			tumba.cambiarPosicion()
 			momia.reiniciar()
 		}
 		if (self.position() == campana.position()) {

@@ -15,6 +15,7 @@ program momiaGame {
 	
 	menu.ejecutar()
 	
+	keyboard.i().onPressDo({ instrucciones.ejecutar() })
 	keyboard.enter().onPressDo({ juego.empezar() })
 	
 		// empieza

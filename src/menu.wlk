@@ -7,7 +7,7 @@ import extras.*
 
 object menu {
 
-	method image() = "INTRO.jpg"
+	method image() = "INTRO.png"
 
 	method position() = game.origin()
 
@@ -17,10 +17,24 @@ object menu {
 
 }
 
+object instrucciones{
+	var property position = game.origin()
+	
+	method image() = "intrucciones.png"
+
+	method ejecutar() = game.addVisual(self)
+
+	method ocultar() {position = game.at(20, 20)}
+		
+}
+
 object juego {
 
 	method empezar() {
 		menu.ocultar()
+		
+		instrucciones.ocultar()
+		
 			// ventanas
 		ventana.mostrar()
 			// escaleras
@@ -40,7 +54,7 @@ object juego {
 		keyboard.up().onPressDo({ faraon.mover(arriba)})
 		keyboard.down().onPressDo({ faraon.mover(abajo)})
 		keyboard.space().onPressDo({ faraon.cuentasFaraon()})
-		cruz.aparece()
+		tumba.aparece()
 		campana.aparece()
 		reloj.aparece()
 	}

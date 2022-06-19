@@ -2,11 +2,11 @@ import wollok.game.*
 import faraon.*
 
 // OBJETOS
-object cruz {
+object tumba {
 
 	var property position = game.at(1, 0)
 
-	method image() = "cruz.png"
+	method image() = "tumba.png"
 
 	method cambiarPosicion() {
 		position = game.at(20, 20)
