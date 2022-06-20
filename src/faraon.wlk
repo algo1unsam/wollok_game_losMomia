@@ -111,6 +111,9 @@ object faraon {
 
 	// CUENTAS
 	method cuentasFaraon() {
+		
+		game.sound("seleccionar.mp3").play()
+		
 		if (cuentas.hayEncuadrable(self.position())) {
 			const nuevaSeleccion = cuentas.encuadrable(self.position())
 			if (seleccionado != null and seleccionado.position() != nuevaSeleccion.position()) {
