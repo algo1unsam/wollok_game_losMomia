@@ -24,7 +24,7 @@ object momia {
 
 	method start() {
 		self.movimientoInicial()
-		game.schedule(12000, { => game.onTick(velocidad, "momiaStop", { => self.perseguir()})})
+		game.schedule(11000, { => game.onTick(velocidad, "momiaStop", { => self.perseguir()})})
 	}
 	
 	method movimientoInicial(){

@@ -57,10 +57,20 @@ object objetos {
 		const property campana = new Campana(position = self.elegirPosicion() )
 		
 	var property listaObjetos = [tumba, reloj, campana]
+	var listaObjetosAmostrar= listaObjetos.copy()
 
 	
 	method mostrar() {
-		listaObjetos.forEach({ unObjeto => game.addVisual(unObjeto)})
+		
+		if(listaObjetosAmostrar.isEmpty()){game.removeTickEvent("fin")}
+		
+		else {
+		var objetoSeleccionado=listaObjetosAmostrar.anyOne()
+		game.addVisual(objetoSeleccionado)
+		listaObjetosAmostrar.remove(objetoSeleccionado)
+		//listaObjetos.forEach({ unObjeto => game.addVisual(unObjeto)})
+		}
+		
 	}
 	
 	method elegirPosicion() {

@@ -50,7 +50,8 @@ object juego {
 		
 			// objetos
 //			objetos.mostrar()
-		game.schedule(15000, { objetos.mostrar()} )
+		//game.schedule(15000, { objetos.mostrar()} )
+		game.schedule(5000, { => game.onTick(10000, "fin", { => objetos.mostrar()})})
 			
 			// personaje principal 
 		game.addVisual(faraon) // img en 250px
