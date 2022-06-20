@@ -20,8 +20,15 @@ object momia {
 			return "momia_sale1.png"
 		} else return "momia_quieta_adelante.png"
 	}
+	
 
 	method start() {
+		self.movimientoInicial()
+		game.schedule(12000, { => game.onTick(velocidad, "momiaStop", { => self.perseguir()})})
+	}
+	
+	method movimientoInicial(){
+		
 		game.schedule(3000, { => game.addVisual(self)})
 		game.schedule(4000, { => contador++})
 		game.schedule(5000, { => contador++})
@@ -31,7 +38,7 @@ object momia {
 		game.schedule(9000, { => position = position.left(1)})
 		game.schedule(10000, { => position = position.down(1)})
 		game.schedule(11000, { => position = position.down(1)})
-		game.schedule(12000, { => game.onTick(velocidad, "momiaStop", { => self.perseguir()})})
+		
 	}
 
 	method reiniciar() {
