@@ -128,7 +128,7 @@ class Suma inherits Cuenta {
 	override method total() = nro1 + nro2
 
 	override method text() {
-		return '' + nro1 + ' + ' + nro2 + ''
+		return ''+nro1+'+'+nro2+''
 	}
 
 }
@@ -138,17 +138,17 @@ class Resta inherits Cuenta {
 	override method total() = nro1 - nro2
 
 	override method text() {
-		return '' + nro1 + ' - ' + nro2 + ''
+		return ''+nro1+ '-' +nro2+''
 	}
 
 }
 
 class Multiplicacion inherits Cuenta {
 
-	override method total() = nro1 * nro2
+	override method total() = nro1*nro2
 
 	override method text() {
-		return '' + nro1 + ' x ' + nro2 + ''
+		return ''+nro1+'X'+nro2+''
 	}
 
 }
@@ -158,7 +158,7 @@ class Resultado inherits Encuadrable {
 	var property total
 
 	override method text() {
-		return '' + total + ''
+		return ''+total+''
 	}
 
 }

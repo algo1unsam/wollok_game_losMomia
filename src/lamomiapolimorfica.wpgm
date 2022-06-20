@@ -6,6 +6,7 @@ import cuentas.*
 import menu.*
 import extras.*
 
+
 program momiaGame {
 	// configuraciones de pantalla
 	game.title("LA MOMIA POLIMORFICA")
@@ -17,7 +18,17 @@ program momiaGame {
 	
 	keyboard.i().onPressDo({ instrucciones.ejecutar() })
 	keyboard.enter().onPressDo({ juego.empezar() })
+
+	// musica
+	
+	const musica = game.sound("musica.mp3")
+	musica.shouldLoop(true)
+	musica.volume(0.2)
+	game.schedule(100, { musica.play()} )
+
 	
 		// empieza
 	game.start()
-}
+	
+
+	}

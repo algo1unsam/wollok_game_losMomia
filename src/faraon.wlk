@@ -11,7 +11,6 @@ object ganar {
 	method position() = game.origin()
 
 	method ejecutar() {
-//		game.removeTickEvent("momiaStop")
 		game.addVisual(self)
 		game.addVisual(mostrarPuntajeFinal)
 		game.schedule(8000, { => game.stop()})
@@ -23,7 +22,7 @@ object perder {
 
 	method image() = "PERDER.png"
 
-	method position() = game.origin() // game.origin()
+	method position() = game.origin()
 
 	method ejecutar() {
 		game.removeTickEvent("momiaStop")
@@ -36,10 +35,10 @@ object perder {
 
 object mostrarPuntajeFinal {
 
-	method position() = game.center() // game.origin()
+	method position() = game.at(9, 3)
 
 	method text() {
-		return 'PUNTAJE TOTAL OBTENIDO:' + puntosDelFaraon.puntosAcumulados() + ''
+		return ' PUNTAJE TOTAL: ' + puntosDelFaraon.puntosAcumulados() + ''
 	}
 
 }
