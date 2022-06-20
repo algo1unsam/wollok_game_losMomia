@@ -12,6 +12,7 @@ class Objeto {
 	method ejecutarAccion(){
 		game.removeVisual(self)
 		self.cambiarPosicion()
+//		game.sound( self+".mp3" ).play()
 	}
 }
 
@@ -22,6 +23,7 @@ class Tumba inherits Objeto {
 	override method ejecutarAccion(){
 		super()
 		momia.reiniciar()
+		game.sound("tumba.mp3").play()
 	}
 }
 class Campana inherits Objeto {
@@ -30,6 +32,7 @@ class Campana inherits Objeto {
 	}
 	override method ejecutarAccion(){
 		super()
+		game.sound(  "campana.mp3").play()
 		momia.cambiarVelocidad(500)
 	}
 }
@@ -39,6 +42,7 @@ class Reloj inherits Objeto {
 	}
 	override method ejecutarAccion(){
 		super()
+		game.sound( "reloj.mp3").play()
 		momia.cambiarVelocidad(2000)
 	}
 }
