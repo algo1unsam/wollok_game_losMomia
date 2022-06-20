@@ -1,54 +1,73 @@
 import wollok.game.*
 import faraon.*
+import momia.*
 
-// OBJETOS
-object tumba {
 
-	var property position = game.at(1, 0)
 
-	method image() = "tumba.png"
-
-	method cambiarPosicion() {
-		position = game.at(20, 20)
+class Objeto {
+	var property position
+	method image()
+	method cambiarPosicion(){position = game.at(20, 20)}
+	method aparece(){game.addVisual(self)}
+	method ejecutarAccion(){
+		game.removeVisual(self)
+		self.cambiarPosicion()
 	}
-
-	method aparece() {
-		game.addVisual(self)
-	}
-
 }
 
-object campana {
-
-	var property position = game.at(4, 2)
-
-	method image() = "campana.png"
-
-	method cambiarPosicion() {
-		position = game.at(20, 20)
+class Tumba inherits Objeto {
+	override method image() {
+		return "tumba.png"
 	}
-
-	method aparece() {
-		game.addVisual(self)
+	override method ejecutarAccion(){
+		super()
+		momia.reiniciar()
 	}
-
+}
+class Campana inherits Objeto {
+	override method image() {
+		return "campana.png"
+	}
+	override method ejecutarAccion(){
+		super()
+		momia.cambiarVelocidad(500)
+	}
+}
+class Reloj inherits Objeto {
+	override method image() {
+		return "reloj.png"
+	}
+	override method ejecutarAccion(){
+		super()
+		momia.cambiarVelocidad(2000)
+	}
 }
 
-object reloj {
+object objetos {
 
-	var property position = game.at(1, 4)
+		var property listaPosicion = [game.at(4, 0) , game.at(7, 0) , game.at(13, 0) , game.at(4, 2), game.at(13, 2), game.at(7, 4), game.at(5, 6) , game.at(9, 6)]
+	
+		const property tumba = new Tumba(position = self.elegirPosicion() )
+		const property reloj = new Reloj(position = self.elegirPosicion() )
+		const property campana = new Campana(position = self.elegirPosicion() )
+		
+	var property listaObjetos = [tumba, reloj, campana]
 
-	method image() = "reloj.png"
-
-	method cambiarPosicion() {
-		position = game.at(20, 20)
+	
+	method mostrar() {
+		listaObjetos.forEach({ unObjeto => game.addVisual(unObjeto)})
 	}
-
-	method aparece() {
-		game.addVisual(self)
+	
+	method elegirPosicion() {
+		const posicionElegida = listaPosicion.anyOne()
+		listaPosicion.remove(posicionElegida)
+		return posicionElegida
 	}
+	
 
 }
+ 
+
 
 //VENTANAS
 object ventana {
@@ -62,7 +81,7 @@ object ventana {
 	method cargar() {
 		self.crear(13, 6)
 		self.crear(6, 2)
-		self.crear(14, 0)
+		self.crear(15, 0)
 	}
 
 	method mostrar() {

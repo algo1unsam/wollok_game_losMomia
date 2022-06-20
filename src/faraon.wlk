@@ -11,6 +11,7 @@ object ganar {
 	method position() = game.origin()
 
 	method ejecutar() {
+		game.removeTickEvent("momiaStop")
 		game.addVisual(self)
 		game.addVisual(mostrarPuntajeFinal)
 		game.schedule(8000, { => game.stop()})
@@ -73,20 +74,8 @@ object faraon {
 	}
 
 	method validaHayObjeto() {
-		if (self.position() == tumba.position()) {
-			game.removeVisual(tumba)
-			tumba.cambiarPosicion()
-			momia.reiniciar()
-		}
-		if (self.position() == campana.position()) {
-			game.removeVisual(campana)
-			campana.cambiarPosicion()
-			momia.cambiarVelocidad(500)
-		}
-		if (self.position() == reloj.position()) {
-			game.removeVisual(reloj)
-			reloj.cambiarPosicion()
-			momia.cambiarVelocidad(2000)
+		if (game.colliders(self).fold(false, { acum , element => objetos.listaObjetos().contains(element) or acum }) ) {
+			game.colliders(self).first().ejecutarAccion()
 		}
 	}
 

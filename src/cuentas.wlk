@@ -25,11 +25,11 @@ game.at(11, 2),
 game.at(5, 4), 
 game.at(16, 6),
  game.at(5, 0), 
- game.at(16, 0), 
+ game.at(17, 0), 
  game.at(1, 2),
   game.at(13, 4), 
   game.at(1, 6),
-   game.at(8, 6)
+   game.at(7, 6)
 		]
 		listaCuadros = posiciones.map({ pos => new Cuadro(position = pos)})
 		listaCuadros.forEach({ cuadro => game.addVisual(cuadro)})

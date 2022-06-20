@@ -47,6 +47,11 @@ object juego {
 		momia.start()
 			// mostrar puntaje
 		game.addVisual(puntosDelFaraon)
+		
+			// objetos
+//			objetos.mostrar()
+		game.schedule(15000, { objetos.mostrar()} )
+			
 			// personaje principal 
 		game.addVisual(faraon) // img en 250px
 		keyboard.left().onPressDo({ faraon.mover(izquierda)})
@@ -54,9 +59,9 @@ object juego {
 		keyboard.up().onPressDo({ faraon.mover(arriba)})
 		keyboard.down().onPressDo({ faraon.mover(abajo)})
 		keyboard.space().onPressDo({ faraon.cuentasFaraon()})
-		tumba.aparece()
-		campana.aparece()
-		reloj.aparece()
+
+	 
+		
 	}
 
 }
