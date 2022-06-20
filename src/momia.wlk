@@ -45,7 +45,7 @@ object momia {
 		game.removeVisual(self)
 		contador = 0
 		game.schedule(1000, { => position = game.at(9, 8)})
-		game.schedule(1000, { => 	self.start()})
+		game.schedule(2000, { => 	self.start()})
 	}
 
 	method cambiarVelocidad(_velocidad) {
