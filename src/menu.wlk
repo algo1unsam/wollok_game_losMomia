@@ -20,7 +20,7 @@ object menu {
 object instrucciones{
 	var property position = game.origin()
 	
-	method image() = "intrucciones.png"
+	method image() = "instrucciones.png"
 
 	method ejecutar() = game.addVisual(self)
 

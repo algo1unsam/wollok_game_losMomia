@@ -80,6 +80,7 @@ object faraon {
 	}
 
 	method mover(direccion) {
+		self.verificarMismaPosicion()
 		direccion.validarMover(self)
 		self.validaHayObjeto()
 		position = direccion.siguiente(position)

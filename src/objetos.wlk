@@ -22,6 +22,7 @@ class Tumba inherits Objeto {
 	}
 	override method ejecutarAccion(){
 		super()
+		game.removeTickEvent("momiaStop")
 		momia.reiniciar()
 		game.sound("tumba.mp3").play()
 	}
