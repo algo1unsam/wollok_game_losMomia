@@ -7,7 +7,7 @@ object momia {
 
 	var property position = game.at(9, 8)
 	var property contador = 0
-	var property velocidad = 1000
+	var property velocidad = 800
 
 	method image() {
 		if (contador == 0) {
@@ -20,15 +20,13 @@ object momia {
 			return "momia_sale1.png"
 		} else return "momia_quieta_adelante.png"
 	}
-	
 
 	method start() {
 		self.movimientoInicial()
 		game.schedule(11000, { => game.onTick(velocidad, "momiaStop", { => self.perseguir()})})
 	}
-	
-	method movimientoInicial(){
-		
+
+	method movimientoInicial() {
 		game.schedule(3000, { => game.addVisual(self)})
 		game.schedule(4000, { => contador++})
 		game.schedule(5000, { => contador++})
@@ -38,14 +36,13 @@ object momia {
 		game.schedule(9000, { => position = position.left(1)})
 		game.schedule(10000, { => position = position.down(1)})
 		game.schedule(11000, { => position = position.down(1)})
-		
 	}
 
 	method reiniciar() {
 		game.removeVisual(self)
 		contador = 0
 		game.schedule(1000, { => position = game.at(9, 8)})
-		game.schedule(2000, { => 	self.start()})
+		game.schedule(2000, { => self.start()})
 	}
 
 	method cambiarVelocidad(_velocidad) {

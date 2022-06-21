@@ -12,6 +12,7 @@ object ganar {
 
 	method ejecutar() {
 		game.removeTickEvent("momiaStop")
+		if ( not objetos.listaObjetosAmostrar().isEmpty()) {game.removeTickEvent("fin")}
 		game.addVisual(self)
 		game.addVisual(mostrarPuntajeFinal)
 		game.schedule(8000, { => game.stop()})
@@ -27,6 +28,7 @@ object perder {
 
 	method ejecutar() {
 		game.removeTickEvent("momiaStop")
+		if ( not objetos.listaObjetosAmostrar().isEmpty()) {game.removeTickEvent("fin")}
 		game.addVisual(self)
 		game.addVisual(mostrarPuntajeFinal)
 		game.schedule(8000, { => game.stop()})
@@ -74,7 +76,7 @@ object faraon {
 	}
 
 	method validaHayObjeto() {
-		if (game.colliders(self).fold(false, { acum , element => objetos.listaObjetos().contains(element) or acum }) ) {
+		if (game.colliders(self).fold(false, { acum , element => objetos.listaObjetos().contains(element) or acum })) {
 			game.colliders(self).first().ejecutarAccion()
 		}
 	}
@@ -111,11 +113,8 @@ object faraon {
 
 	// CUENTAS
 	method cuentasFaraon() {
-				
 		if (cuentas.hayEncuadrable(self.position())) {
-			
 			game.sound("seleccionar.mp3").play()
-			
 			const nuevaSeleccion = cuentas.encuadrable(self.position())
 			if (seleccionado != null and seleccionado.position() != nuevaSeleccion.position()) {
 				if (seleccionado.match(nuevaSeleccion)) {

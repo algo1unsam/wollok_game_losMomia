@@ -2,87 +2,98 @@ import wollok.game.*
 import faraon.*
 import momia.*
 
-
-
 class Objeto {
+
 	var property position
+
 	method image()
-	method cambiarPosicion(){position = game.at(20, 20)}
-	method aparece(){game.addVisual(self)}
-	method ejecutarAccion(){
+
+	method cambiarPosicion() {
+		position = null
+	}
+
+	method aparece() {
+		game.addVisual(self)
+	}
+
+	method ejecutarAccion() {
 		game.removeVisual(self)
 		self.cambiarPosicion()
 //		game.sound( self+".mp3" ).play()
 	}
+
 }
 
 class Tumba inherits Objeto {
+
 	override method image() {
 		return "tumba.png"
 	}
-	override method ejecutarAccion(){
+
+	override method ejecutarAccion() {
 		super()
 		game.removeTickEvent("momiaStop")
 		momia.reiniciar()
 		game.sound("tumba.mp3").play()
 	}
+
 }
+
 class Campana inherits Objeto {
+
 	override method image() {
 		return "campana.png"
 	}
-	override method ejecutarAccion(){
+
+	override method ejecutarAccion() {
 		super()
-		game.sound(  "campana.mp3").play()
+		game.sound("campana.mp3").play()
 		momia.cambiarVelocidad(500)
 	}
+
 }
+
 class Reloj inherits Objeto {
+
 	override method image() {
 		return "reloj.png"
 	}
-	override method ejecutarAccion(){
+
+	override method ejecutarAccion() {
 		super()
-		game.sound( "reloj.mp3").play()
-		momia.cambiarVelocidad(2000)
+		game.sound("reloj.mp3").play()
+		momia.cambiarVelocidad(1200)
 	}
+
 }
 
 object objetos {
 
-		var property listaPosicion = [game.at(4, 0) , game.at(7, 0) , game.at(13, 0) , game.at(4, 2), game.at(13, 2), game.at(7, 4), game.at(5, 6) , game.at(9, 6)]
-	
-		const property tumba = new Tumba(position = self.elegirPosicion() )
-		const property reloj = new Reloj(position = self.elegirPosicion() )
-		const property campana = new Campana(position = self.elegirPosicion() )
-		
-	var property listaObjetos = [tumba, reloj, campana]
-	var listaObjetosAmostrar= listaObjetos.copy()
+	var property listaPosicion = [ game.at(4, 0), game.at(7, 0), game.at(13, 0), game.at(4, 2), game.at(13, 2), game.at(7, 4), game.at(5, 6), game.at(9, 6) ]
+	const property tumba = new Tumba(position = self.elegirPosicion())
+	const property reloj = new Reloj(position = self.elegirPosicion())
+	const property campana = new Campana(position = self.elegirPosicion())
+	var property listaObjetos = [ tumba, reloj, campana ]
+	var property listaObjetosAmostrar = listaObjetos.copy()
 
-	
 	method mostrar() {
-		
-		if(listaObjetosAmostrar.isEmpty()){game.removeTickEvent("fin")}
-		
-		else {
-		var objetoSeleccionado=listaObjetosAmostrar.anyOne()
-		game.addVisual(objetoSeleccionado)
-		listaObjetosAmostrar.remove(objetoSeleccionado)
-		//listaObjetos.forEach({ unObjeto => game.addVisual(unObjeto)})
+		if (listaObjetosAmostrar.isEmpty()) {
+			game.removeTickEvent("fin")
+		} else {
+			var objetoSeleccionado = listaObjetosAmostrar.anyOne()
+			game.addVisual(objetoSeleccionado)
+			listaObjetosAmostrar.remove(objetoSeleccionado)
+		// listaObjetos.forEach({ unObjeto => game.addVisual(unObjeto)})
 		}
-		
 	}
-	
+
 	method elegirPosicion() {
 		const posicionElegida = listaPosicion.anyOne()
 		listaPosicion.remove(posicionElegida)
 		return posicionElegida
 	}
-	
 
 }
- 
-
 
 //VENTANAS
 object ventana {

@@ -18,19 +18,7 @@ object cuentas {
 	var property listaCuadros = []
 
 	method mostrar() {
-		const posiciones = [ game.at(2, 0),
-			game.at(11, 0), 
-			game.at(16, 2),
-game.at(11, 2), 
-game.at(5, 4), 
-game.at(16, 6),
- game.at(5, 0), 
- game.at(17, 0), 
- game.at(1, 2),
-  game.at(13, 4), 
-  game.at(1, 6),
-   game.at(7, 6)
-		]
+		const posiciones = [ game.at(2, 0), game.at(11, 0), game.at(16, 2), game.at(11, 2), game.at(5, 4), game.at(16, 6), game.at(5, 0), game.at(17, 0), game.at(1, 2), game.at(13, 4), game.at(1, 6), game.at(7, 6) ]
 		listaCuadros = posiciones.map({ pos => new Cuadro(position = pos)})
 		listaCuadros.forEach({ cuadro => game.addVisual(cuadro)})
 		const listaCuenta = [ self.suma(), self.suma(), self.resta(), self.resta(), self.multiplicacion(), self.multiplicacion() ]
@@ -128,7 +116,7 @@ class Suma inherits Cuenta {
 	override method total() = nro1 + nro2
 
 	override method text() {
-		return ''+nro1+'+'+nro2+''
+		return '' + nro1 + '+' + nro2 + ''
 	}
 
 }
@@ -138,17 +126,17 @@ class Resta inherits Cuenta {
 	override method total() = nro1 - nro2
 
 	override method text() {
-		return ''+nro1+ '-' +nro2+''
+		return '' + nro1 + '-' + nro2 + ''
 	}
 
 }
 
 class Multiplicacion inherits Cuenta {
 
-	override method total() = nro1*nro2
+	override method total() = nro1 * nro2
 
 	override method text() {
-		return ''+nro1+'X'+nro2+''
+		return '' + nro1 + 'X' + nro2 + ''
 	}
 
 }
@@ -158,7 +146,7 @@ class Resultado inherits Encuadrable {
 	var property total
 
 	override method text() {
-		return ''+total+''
+		return '' + total + ''
 	}
 
 }

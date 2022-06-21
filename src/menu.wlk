@@ -7,9 +7,9 @@ import extras.*
 
 object menu {
 
-	method image() = "INTRO.png"
+	var property position = game.origin()
 
-	method position() = game.origin()
+	method image() = "INTRO.png"
 
 	method ejecutar() = game.addVisual(self)
 
@@ -17,52 +17,42 @@ object menu {
 
 }
 
-object instrucciones{
+object instrucciones {
+
 	var property position = game.origin()
-	
+
 	method image() = "instrucciones.png"
 
-	method ejecutar() = game.addVisual(self)
+	method ejecutar() {
+		menu.ocultar()
+		game.addVisual(self)
+		self.ocultar()
+	}
 
-	method ocultar() {position = game.at(20, 20)}
-		
+	method ocultar() {
+		game.schedule(17000, { game.removeVisual(self)
+			juego.empezar()
+		})
+	}
+
 }
 
 object juego {
 
 	method empezar() {
-		menu.ocultar()
-		
-		instrucciones.ocultar()
-		
-			// ventanas
-		ventana.mostrar()
-			// escaleras
-		escalera.mostrar()
-			// escalera abajo
-		escaleraAbajo.mostrar()
-			// CUENTAS
-		cuentas.mostrar()
-			// FARAON
-		momia.start()
-			// mostrar puntaje
-		game.addVisual(puntosDelFaraon)
-		
-			// objetos
-//			objetos.mostrar()
-		//game.schedule(15000, { objetos.mostrar()} )
-		game.schedule(5000, { => game.onTick(10000, "fin", { => objetos.mostrar()})})
-			
-			// personaje principal 
-		game.addVisual(faraon) // img en 250px
+		ventana.mostrar() // ventanas
+		escalera.mostrar() // escaleras
+		escaleraAbajo.mostrar() // escalera abajo
+		cuentas.mostrar() // cuentas
+		momia.start() // momia
+		game.addVisual(puntosDelFaraon) // mostrar puntaje
+		game.schedule(5000, { => game.onTick(10000, "fin", { => objetos.mostrar()})}) // objetos
+		game.addVisual(faraon) // faraon
 		keyboard.left().onPressDo({ faraon.mover(izquierda)})
 		keyboard.right().onPressDo({ faraon.mover(derecha)})
 		keyboard.up().onPressDo({ faraon.mover(arriba)})
 		keyboard.down().onPressDo({ faraon.mover(abajo)})
 		keyboard.space().onPressDo({ faraon.cuentasFaraon()})
-
-	 
-		
 	}
 
 }
