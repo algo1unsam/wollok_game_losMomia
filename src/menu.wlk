@@ -8,38 +8,28 @@ import extras.*
 object menu {
 
 	var property position = game.origin()
+	var property imagen = 0
 
-	method image() = "INTRO.png"
-
-	method ejecutar() = game.addVisual(self)
-
-	method ocultar() = game.removeVisual(self)
-
-}
-
-object instrucciones {
-
-	var property position = game.origin()
-
-	method image() = "instrucciones.png"
+	method image(){return "imagen_"+imagen+".png"}
 
 	method ejecutar() {
-		menu.ocultar()
-		game.addVisual(self)
-		self.ocultar()
+	game.addVisual(self)
 	}
 
-	method ocultar() {
-		game.schedule(17000, { game.removeVisual(self)
-			juego.empezar()
-		})
+	method cambiarAInstrucciones(){
+		imagen = 1
 	}
+
+	method ocultar() = game.removeVisual(self)
 
 }
 
 object juego {
 
 	method empezar() {
+		
+		menu.ocultar()
+		
 		ventana.mostrar() // ventanas
 		escalera.mostrar() // escaleras
 		escaleraAbajo.mostrar() // escalera abajo

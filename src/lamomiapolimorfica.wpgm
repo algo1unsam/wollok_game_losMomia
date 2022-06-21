@@ -15,7 +15,8 @@ program momiaGame {
 	
 	menu.ejecutar()
 	
-	keyboard.enter().onPressDo({ instrucciones.ejecutar() })
+	keyboard.enter().onPressDo({ juego.empezar() })
+	keyboard.i().onPressDo({ menu.cambiarAInstrucciones() })		
 	
 	// musica
 	const musica = game.sound("musica.mp3")
